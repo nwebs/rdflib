@@ -20,7 +20,7 @@ def _serial_number_generator():
         yield i
         i = i + 1
 
-from rdflib.Identifier import Identifier
+from rdflib.identifier import Identifier
 from rdflib.syntax.xml_names import is_ncname
 import threading
 
@@ -78,7 +78,7 @@ class BNode(Identifier):
     def __eq__(self, other):
         """
         >>> from rdflib.uriref import URIRef
-        >>> from rdflib.BNode import BNode
+        >>> from rdflib.bnode import BNode
         >>> BNode("foo")==None
         False
         >>> BNode("foo")==URIRef("foo")

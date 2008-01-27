@@ -1,5 +1,5 @@
 from rdflib import URIRef
-from rdflib.Identifier import Identifier
+from rdflib.identifier import Identifier
 
 class QName(Identifier):
     __slots__ = ("localname", "prefix")

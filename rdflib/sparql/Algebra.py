@@ -14,7 +14,7 @@ to a dataset D having active graph G. The active graph is initially the default 
 """
 import unittest, os
 from StringIO import StringIO
-from rdflib.Graph import Graph, ReadOnlyGraphAggregate, ConjunctiveGraph
+from rdflib.graph import Graph, ReadOnlyGraphAggregate, ConjunctiveGraph
 from rdflib import URIRef, Variable, plugin, BNode, Literal
 from rdflib.util import first
 from rdflib.store import Store 

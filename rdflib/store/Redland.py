@@ -1,10 +1,10 @@
 
 import rdflib
-from rdflib.Graph import Graph
+from rdflib.graph import Graph
 from rdflib.uriref import URIRef
-from rdflib.Node import Node
-from rdflib.BNode import BNode
-from rdflib.Literal import Literal
+from rdflib.node import Node
+from rdflib.bnode import BNode
+from rdflib.literal import Literal
 try:
     import RDF
 except ImportError:

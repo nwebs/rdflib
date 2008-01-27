@@ -26,8 +26,8 @@
 ##
 
 import sys, os, re
-from rdflib.Literal     import Literal, _XSD_NS
-from rdflib.BNode       import BNode
+from rdflib.literal     import Literal, _XSD_NS
+from rdflib.bnode       import BNode
 from rdflib.uriref      import URIRef
 from rdflib             import Variable
 from rdflib.sparql.graphPattern import _createResource

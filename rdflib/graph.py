@@ -7,7 +7,7 @@ Instanciating Graphs with default store (IOMemory) and default identifier (a BNo
     >>> g.store.__class__
     <class 'rdflib.store.IOMemory.IOMemory'>
     >>> g.identifier.__class__
-    <class 'rdflib.BNode.BNode'>
+    <class 'rdflib.bnode.BNode'>
 
 Instanciating Graphs with a specific kind of store (IOMemory) and a default identifier (a BNode):
 
@@ -48,10 +48,10 @@ Adding / removing reified triples to Graph and iterating over it directly or via
     4
     >>> for s,p,o in g:  print type(s)
     ...
-    <class 'rdflib.BNode.BNode'>
-    <class 'rdflib.BNode.BNode'>
-    <class 'rdflib.BNode.BNode'>
-    <class 'rdflib.BNode.BNode'>
+    <class 'rdflib.bnode.BNode'>
+    <class 'rdflib.bnode.BNode'>
+    <class 'rdflib.bnode.BNode'>
+    <class 'rdflib.bnode.BNode'>
     
     >>> for s,p,o in g.triples((None,RDF.object,None)):  print o
     ...
@@ -151,7 +151,7 @@ from cStringIO import StringIO
 from rdflib import URIRef, BNode, Namespace, Literal, Variable
 from rdflib import RDF, RDFS
 
-from rdflib.Node import Node
+from rdflib.node import Node
 
 from rdflib import plugin, exceptions
 
@@ -162,7 +162,7 @@ from rdflib.syntax.parsers import Parser
 from rdflib.syntax.NamespaceManager import NamespaceManager
 from rdflib import sparql
 from rdflib.QueryResult import QueryResult
-from rdflib.URLInputSource import URLInputSource
+from rdflib.urlinputsource import URLInputSource
 from xml.sax.xmlreader import InputSource
 from xml.sax.saxutils import prepare_input_source
 
@@ -570,7 +570,7 @@ class Graph(Node):
         Generates transitive closure of a user-defined 
         function against the graph
         
-        >>> from rdflib.Collection import Collection
+        >>> from rdflib.collection import Collection
         >>> g=Graph()
         >>> a=BNode('foo')
         >>> b=BNode('bar')
@@ -1003,7 +1003,7 @@ class BackwardCompatGraph(ConjunctiveGraph):
 
     def __init__(self, backend='default'):
         warnings.warn("Use ConjunctiveGraph instead. "
-                      "( from rdflib.Graph import ConjunctiveGraph )",
+                      "( from rdflib.graph import ConjunctiveGraph )",
                       DeprecationWarning, stacklevel=2)
         super(BackwardCompatGraph, self).__init__(store=backend)
 

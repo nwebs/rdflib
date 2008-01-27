@@ -33,7 +33,7 @@
 """
 from rdflib import RDF, RDFS, Namespace
 from rdflib import URIRef, BNode, Literal
-from rdflib.Graph import Graph
+from rdflib.graph import Graph
 from rdflib.exceptions import ParserError, Error
 from rdflib.syntax.xml_names import is_ncname
 
@@ -42,7 +42,7 @@ from urlparse import urljoin, urldefrag
 
 RDFNS = RDF.RDFNS
 
-TRIXNS=Namespace.Namespace("http://www.w3.org/2004/03/trix/trix-1/")
+TRIXNS=Namespace("http://www.w3.org/2004/03/trix/trix-1/")
 
 
 class TriXHandler(handler.ContentHandler):

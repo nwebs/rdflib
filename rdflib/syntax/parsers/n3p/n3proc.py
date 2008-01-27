@@ -11,7 +11,7 @@ usage:
 """
 
 from rdflib import URIRef, BNode, Literal, Variable, Namespace
-from rdflib.Graph import QuotedGraph
+from rdflib.graph import QuotedGraph
 
 import sys, os.path, re, time, urllib
 import n3p

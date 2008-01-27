@@ -1,4 +1,4 @@
-from rdflib.Identifier import Identifier
+from rdflib.identifier import Identifier
 try:
     from hashlib import md5
 except ImportError:

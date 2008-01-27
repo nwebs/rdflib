@@ -1,7 +1,7 @@
 from __future__ import generators
 from rdflib import BNode
 from rdflib.store import Store,VALID_STORE, CORRUPTED_STORE, NO_STORE, UNKNOWN
-from rdflib.Literal import Literal
+from rdflib.literal import Literal
 from pprint import pprint
 import sys
 try:
@@ -11,7 +11,7 @@ except ImportError:
     warnings.warn("MySQLdb is not installed")
     __test__=False
 from rdflib.term_utils import *
-from rdflib.Graph import QuotedGraph
+from rdflib.graph import QuotedGraph
 from rdflib.store.REGEXMatching import REGEXTerm, NATIVE_REGEX, PYTHON_REGEX
 from rdflib.store.AbstractSQLStore import *
 from FOPLRelationalModel.RelationalHash import IdentifierHash, LiteralHash, RelationalHash, GarbageCollectionQUERY

@@ -1,5 +1,5 @@
 from rdflib import QueryResult,URIRef,BNode,Literal, Namespace
-from rdflib.Graph import Graph
+from rdflib.graph import Graph
 from xml.dom import XML_NAMESPACE
 from xml.sax.saxutils import XMLGenerator
 from xml.sax.xmlreader import AttributesNSImpl

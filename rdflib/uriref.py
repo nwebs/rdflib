@@ -12,7 +12,7 @@ else:
 
 from urlparse import urlparse, urljoin, urldefrag
 
-from rdflib.Identifier import Identifier
+from rdflib.identifier import Identifier
 from rdflib.compat import rsplit
 
 

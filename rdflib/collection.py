@@ -1,13 +1,13 @@
 from rdflib import RDF, BNode, Literal
-from rdflib.Graph import Graph
+from rdflib.graph import Graph
 
 class Collection(object):
     """
     See 3.3.5 Emulating container types: http://docs.python.org/ref/sequence-types.html#l2h-232
 
-    >>> from rdflib.BNode import BNode
-    >>> from rdflib.Literal import Literal
-    >>> from rdflib.Graph import Graph    
+    >>> from rdflib.bnode import BNode
+    >>> from rdflib.literal import Literal
+    >>> from rdflib.graph import Graph    
     >>> listName = BNode()
     >>> g = Graph('IOMemory')
     >>> listItem1 = BNode()
@@ -38,9 +38,9 @@ class Collection(object):
 
     def n3(self):
         """
-        >>> from rdflib.BNode import BNode
-        >>> from rdflib.Literal import Literal
-        >>> from rdflib.Graph import Graph    
+        >>> from rdflib.bnode import BNode
+        >>> from rdflib.literal import Literal
+        >>> from rdflib.graph import Graph    
         >>> listName = BNode()
         >>> g = Graph('IOMemory')
         >>> listItem1 = BNode()
@@ -180,7 +180,7 @@ class Collection(object):
 
     def append(self, item):
         """
-        >>> from rdflib.Graph import Graph    
+        >>> from rdflib.graph import Graph    
         >>> listName = BNode()
         >>> g = Graph()
         >>> c=Collection(g,listName,[Literal(1),Literal(2)])

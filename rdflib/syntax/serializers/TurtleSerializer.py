@@ -1,8 +1,8 @@
 import urlparse
 from xml.sax.saxutils import escape, quoteattr
 
-from rdflib.BNode import BNode
-from rdflib.Literal import Literal
+from rdflib.bnode import BNode
+from rdflib.literal import Literal
 from rdflib.uriref import URIRef
 from rdflib.syntax.xml_names import split_uri 
 

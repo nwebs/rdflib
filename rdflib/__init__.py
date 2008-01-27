@@ -13,21 +13,21 @@ _logger = logging.getLogger("rdflib")
 _logger.info("version: %s" % __version__)
 
 from rdflib.uriref import URIRef
-from rdflib.BNode import BNode
-from rdflib.Literal import Literal
-from rdflib.Variable import Variable
+from rdflib.bnode import BNode
+from rdflib.literal import Literal
+from rdflib.variable import Variable
 
-from rdflib.Namespace import Namespace
+from rdflib.namespace import Namespace
 
-# from rdflib.Graph import Graph # perhaps in 3.0, but for 2.x we
+# from rdflib.graph import Graph # perhaps in 3.0, but for 2.x we
 # don't want to break compatibility.
-from rdflib.Graph import BackwardCompatGraph as Graph
-from rdflib.Graph import ConjunctiveGraph
+from rdflib.graph import BackwardCompatGraph as Graph
+from rdflib.graph import ConjunctiveGraph
 
 from rdflib import RDF
 from rdflib import RDFS
 
-from rdflib.FileInputSource import FileInputSource
-from rdflib.URLInputSource import URLInputSource
-from rdflib.StringInputSource import StringInputSource
+from rdflib.fileinputsource import FileInputSource
+from rdflib.urlinputsource import URLInputSource
+from rdflib.stringinputsource import StringInputSource
 

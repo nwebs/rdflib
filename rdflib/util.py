@@ -1,9 +1,9 @@
 from rdflib.uriref import URIRef
-from rdflib.BNode import BNode
-from rdflib.Literal import Literal
-from rdflib.Variable import Variable
-from rdflib.Graph import Graph, QuotedGraph
-from rdflib.Statement import Statement
+from rdflib.bnode import BNode
+from rdflib.literal import Literal
+from rdflib.variable import Variable
+from rdflib.graph import Graph, QuotedGraph
+from rdflib.statement import Statement
 
 from rdflib.exceptions import SubjectTypeError, PredicateTypeError, ObjectTypeError, ContextTypeError
 from rdflib.compat import rsplit

@@ -2,7 +2,7 @@ from rdflib import RDF
 
 from rdflib import URIRef, Literal, BNode
 from rdflib.util import first, uniq, more_than
-from rdflib.Collection import Collection
+from rdflib.collection import Collection
 from rdflib.syntax.serializers import Serializer
 from rdflib.syntax.serializers.XMLWriter import XMLWriter
 

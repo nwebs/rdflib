@@ -1,6 +1,6 @@
-from rdflib.Identifier import Identifier
+from rdflib.identifier import Identifier
 from rdflib.uriref import URIRef
-from rdflib.Namespace import Namespace
+from rdflib.namespace import Namespace
 from rdflib.exceptions import Error
 from datetime import date,time,datetime
 from time import strptime
@@ -90,7 +90,7 @@ class Literal(Identifier):
         >>> Literal(1) + 1
         2L
         >>> Literal("1") + "1"
-        rdflib.Literal('11', lang=None, datatype=None)
+        rdflib.Literal(u'11', lang=None, datatype=None)
         """
 
         py = self.toPython()

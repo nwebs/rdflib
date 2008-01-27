@@ -3,8 +3,8 @@ from __future__ import generators
 from rdflib.syntax.serializers import Serializer
 
 from rdflib.uriref import URIRef
-from rdflib.Literal import Literal
-from rdflib.BNode import BNode
+from rdflib.literal import Literal
+from rdflib.bnode import BNode
 
 from rdflib.util import uniq
 from rdflib.exceptions import Error

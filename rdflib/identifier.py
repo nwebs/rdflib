@@ -1,4 +1,4 @@
-from rdflib.Node import Node
+from rdflib.node import Node
 
 class Identifier(Node,unicode): # we allow Identifiers to be Nodes in our Graph
     """

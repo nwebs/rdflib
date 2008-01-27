@@ -1,4 +1,4 @@
-from rdflib.Node import Node
+from rdflib.node import Node
 
 
 class Statement(Node, tuple):

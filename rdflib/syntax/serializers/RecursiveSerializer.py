@@ -1,5 +1,5 @@
-from rdflib.BNode import BNode
-from rdflib.Literal import Literal
+from rdflib.bnode import BNode
+from rdflib.literal import Literal
 from rdflib.uriref import URIRef
 
 from rdflib.syntax.serializers.AbstractSerializer import AbstractSerializer
