@@ -1,9 +1,9 @@
 import unittest
 
 from rdflib import *
-from rdflib.Graph import Graph
+from rdflib.graph import Graph
 from rdflib import RDF
-from rdflib.StringInputSource import StringInputSource
+from rdflib.stringinputsource import StringInputSource
 
 FOAF = Namespace("http://xmlns.com/foaf/0.1/")
 

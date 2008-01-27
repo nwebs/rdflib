@@ -3,7 +3,7 @@ import doctest
 from rdflib import RDF,RDFS, Namespace
 from rdflib import Variable
 from rdflib.sparql import DESCRIBE
-from rdflib.Graph import Graph
+from rdflib.graph import Graph
 from cStringIO import StringIO
 
 testData="""

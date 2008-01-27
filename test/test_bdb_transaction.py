@@ -21,7 +21,7 @@ def worker_add(performed_ops, graph, num_ops, input=[]):
             graph.add((s,p,o))
             performed_ops.append((s,p,o))
         except Exception, e:
-            print "could not perform op", e
+            print "could not perform op: '%s'" % e
             raise e
             
     print "%s triples, add time: %.4f, thread: %s" % (num_ops, (time.time() - t1), currentThread().getName())

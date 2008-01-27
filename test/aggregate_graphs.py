@@ -1,10 +1,10 @@
 import sys
 import unittest
-from rdflib.Namespace import Namespace
+from rdflib.namespace import Namespace
 from rdflib import plugin,RDF,RDFS,URIRef
 from rdflib.store import Store
 from cStringIO import StringIO
-from rdflib.Graph import Graph,ReadOnlyGraphAggregate,ConjunctiveGraph
+from rdflib.graph import Graph,ReadOnlyGraphAggregate,ConjunctiveGraph
 from pprint import pprint
 
 testGraph1N3="""

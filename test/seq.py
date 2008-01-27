@@ -1,8 +1,8 @@
 import unittest
 
 from rdflib import *
-from rdflib.Graph import Graph
-from rdflib.StringInputSource import StringInputSource
+from rdflib.graph import Graph
+from rdflib.stringinputsource import StringInputSource
 
 class SeqTestCase(unittest.TestCase):
     backend = 'default'

@@ -2,10 +2,10 @@
 import os, sys, string
 import unittest
 from cStringIO import StringIO
-from rdflib.Graph import ConjunctiveGraph, Graph
+from rdflib.graph import ConjunctiveGraph, Graph
 from rdflib import StringInputSource
 from rdflib import URIRef, Literal, BNode
-from rdflib.Collection import Collection
+from rdflib.collection import Collection
 
 DATA=\
 """<http://example.com#C> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>.

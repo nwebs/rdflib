@@ -1,6 +1,6 @@
-from rdflib.Namespace import Namespace
+from rdflib.namespace import Namespace
 from rdflib import plugin,RDF,RDFS,URIRef, StringInputSource, Literal, BNode, Variable
-from rdflib.Graph import Graph,ReadOnlyGraphAggregate,ConjunctiveGraph
+from rdflib.graph import Graph,ReadOnlyGraphAggregate,ConjunctiveGraph
 import unittest,sys
 from pprint import pprint
 

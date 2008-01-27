@@ -1,8 +1,8 @@
 import unittest
 
-from rdflib.Graph import Graph
+from rdflib.graph import Graph
 from rdflib import URIRef, BNode, Literal, RDF, RDFS
-from rdflib.StringInputSource import StringInputSource
+from rdflib.stringinputsource import StringInputSource
 
 
 class ParserTestCase(unittest.TestCase):

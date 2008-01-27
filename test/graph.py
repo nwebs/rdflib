@@ -3,7 +3,7 @@ import unittest
 from tempfile import mkdtemp
 
 from rdflib import URIRef, BNode, Literal, RDF
-from rdflib.Graph import Graph
+from rdflib.graph import Graph
 
 class GraphTestCase(unittest.TestCase):
     store_name = 'default'
@@ -123,7 +123,7 @@ class GraphTestCase(unittest.TestCase):
     def testStatementNode(self):
         graph = self.graph
 
-        from rdflib.Statement import Statement
+        from rdflib.statement import Statement
         c = URIRef("http://example.org/foo#c")
         r = URIRef("http://example.org/foo#r")
         s = Statement((self.michel, self.likes, self.pizza), c)
@@ -132,7 +132,7 @@ class GraphTestCase(unittest.TestCase):
         self.assertEquals(s, graph.value(predicate=RDF.value, object=r))
 
     def testGraphValue(self):
-        from rdflib.Graph import GraphValue
+        from rdflib.graph import GraphValue
 
         graph = self.graph
 
