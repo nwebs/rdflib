@@ -31,11 +31,3 @@ from rdflib.FileInputSource import FileInputSource
 from rdflib.URLInputSource import URLInputSource
 from rdflib.StringInputSource import StringInputSource
 
-# if zope.interface is not installed, these calls do nothing
-
-from rdflib.interfaces import IIdentifier, classImplements
-classImplements(URIRef, IIdentifier)
-classImplements(BNode, IIdentifier)
-classImplements(Literal, IIdentifier)
-
-
