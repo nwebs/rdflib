@@ -1,4 +1,4 @@
-from rdflib.URIRef import URIRef
+from rdflib.uriref import URIRef
 from rdflib.BNode import BNode
 from rdflib.Literal import Literal
 from rdflib.Variable import Variable

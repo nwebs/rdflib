@@ -7,7 +7,7 @@ Utility functions associated with RDF terms:
 from rdflib.BNode import BNode
 from rdflib import RDF
 from rdflib.Literal import Literal
-from rdflib.URIRef import URIRef
+from rdflib.uriref import URIRef
 import md5
 from rdflib.term_utils import *
 from rdflib.Graph import QuotedGraph

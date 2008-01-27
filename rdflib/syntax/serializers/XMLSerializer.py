@@ -2,7 +2,7 @@ from __future__ import generators
 
 from rdflib.syntax.serializers import Serializer
 
-from rdflib.URIRef import URIRef
+from rdflib.uriref import URIRef
 from rdflib.Literal import Literal
 from rdflib.BNode import BNode
 

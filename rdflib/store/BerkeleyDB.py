@@ -2,7 +2,7 @@ import warnings, thread, sys
 
 from rdflib.store import Store, VALID_STORE, CORRUPTED_STORE, NO_STORE, UNKNOWN
 from rdflib.store.Sleepycat import Sleepycat
-from rdflib.URIRef import URIRef
+from rdflib.uriref import URIRef
 from bsddb import db
 from os import mkdir, rmdir, makedirs
 from os.path import exists, abspath, join

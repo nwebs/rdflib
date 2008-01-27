@@ -3,7 +3,7 @@ from xml.sax.saxutils import escape, quoteattr
 
 from rdflib.BNode import BNode
 from rdflib.Literal import Literal
-from rdflib.URIRef import URIRef
+from rdflib.uriref import URIRef
 from rdflib.syntax.xml_names import split_uri 
 
 from rdflib.syntax.serializers.RecursiveSerializer import RecursiveSerializer

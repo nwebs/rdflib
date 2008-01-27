@@ -1,7 +1,7 @@
 
 import rdflib
 from rdflib.Graph import Graph
-from rdflib.URIRef import URIRef
+from rdflib.uriref import URIRef
 from rdflib.Node import Node
 from rdflib.BNode import BNode
 from rdflib.Literal import Literal

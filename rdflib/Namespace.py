@@ -1,4 +1,4 @@
-from rdflib.URIRef import URIRef
+from rdflib.uriref import URIRef
 
 import logging
 

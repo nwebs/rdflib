@@ -74,7 +74,7 @@ class Store(object):
     def __get_node_pickler(self):
         if self.__node_pickler is None:
             from rdflib.store.NodePickler import NodePickler
-            from rdflib.URIRef import URIRef
+            from rdflib.uriref import URIRef
             from rdflib.BNode import BNode
             from rdflib.Literal import Literal
             from rdflib.Graph import Graph, QuotedGraph, GraphValue

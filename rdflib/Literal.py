@@ -1,5 +1,5 @@
 from rdflib.Identifier import Identifier
-from rdflib.URIRef import URIRef
+from rdflib.uriref import URIRef
 from rdflib.Namespace import Namespace
 from rdflib.exceptions import Error
 from datetime import date,time,datetime

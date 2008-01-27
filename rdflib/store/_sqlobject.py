@@ -12,7 +12,7 @@ from urllib import quote, unquote
 
 from rdflib.store import Store
 from rdflib.Literal import Literal
-from rdflib.URIRef import URIRef
+from rdflib.uriref import URIRef
 from rdflib.BNode import BNode
 from rdflib.exceptions import ContextTypeError
 

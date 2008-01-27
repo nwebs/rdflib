@@ -7,7 +7,7 @@ from rdflib.BNode import BNode
 from rdflib.Graph import ConjunctiveGraph
 from rdflib.Literal import Literal
 from rdflib.Namespace import NamespaceDict as Namespace
-from rdflib.URIRef import URIRef
+from rdflib.uriref import URIRef
 from rdflib.store import TripleAddedEvent, TripleRemovedEvent
 from rdflib.store.IOMemory import IOMemory
 import logging
