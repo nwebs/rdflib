@@ -5,7 +5,7 @@ from xml.sax import make_parser
 from xml.sax.saxutils import handler
 from xml.sax.handler import ErrorHandler
 
-from rdflib.syntax.parsers.TriXHandler import TriXHandler
+from rdflib_plugins.parsers.TriXHandler import TriXHandler
 
 
 def create_parser(store):

@@ -1,5 +1,5 @@
 from rdflib.syntax.parsers import Parser
-from rdflib.syntax.parsers.ntriples import NTriplesParser
+from rdflib_plugins.parsers.ntriples import NTriplesParser
 
 
 class NTSink(object):

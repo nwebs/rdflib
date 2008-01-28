@@ -1023,7 +1023,7 @@ class ReadOnlyGraphAggregate(ConjunctiveGraph):
     ConjunctiveGraph over an explicit subset of the entire store.
     """
 
-    def __init__(self, graphs,store='default'):
+    def __init__(self, graphs,store='IOMemory'):
         if store is not None:
             super(ReadOnlyGraphAggregate, self).__init__(store)
         assert isinstance(graphs, list) and graphs\

@@ -4,7 +4,7 @@ from xml.sax import make_parser
 from xml.sax.saxutils import handler
 from xml.sax.handler import ErrorHandler
 
-from rdflib.syntax.parsers.RDFXMLHandler import RDFXMLHandler
+from rdflib_plugins.parsers.RDFXMLHandler import RDFXMLHandler
 
 
 def create_parser(target, store):

@@ -201,7 +201,7 @@ class TextIndex(ConjunctiveGraph):
     term = Namespace('http://rdflib.net/text_index#')["term"]
     termin = Namespace('http://rdflib.net/text_index#')["termin"]
 
-    def __init__(self, store='default'):
+    def __init__(self, store='IOMemory'):
         super(TextIndex, self).__init__(store)
 
     def add_handler(self, event):
