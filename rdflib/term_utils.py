@@ -1,7 +1,7 @@
 from rdflib import *
-from rdflib.graph import QuotedGraph, Graph, ConjunctiveGraph, BackwardCompatGraph
+from rdflib.graph import QuotedGraph, Graph, ConjunctiveGraph
 
-#Takes an instance of a Graph (Graph, QuotedGraph, ConjunctiveGraph, or BackwardCompatGraph)
+#Takes an instance of a Graph (Graph, QuotedGraph, or ConjunctiveGraph)
 #and returns the Graphs identifier and 'type' ('U' for Graphs, 'F' for QuotedGraphs ).
 def normalizeGraph(graph):
     if isinstance(graph,QuotedGraph):

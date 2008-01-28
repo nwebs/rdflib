@@ -8,7 +8,7 @@ from the store it's wrapping
 
 from rdflib.store import Store
 from pprint import pprint
-from rdflib.graph import Graph, QuotedGraph, ConjunctiveGraph, BackwardCompatGraph
+from rdflib.graph import Graph, QuotedGraph, ConjunctiveGraph
 import re
 
 #Store is capable of doing it's own REGEX matching

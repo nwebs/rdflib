@@ -5,7 +5,7 @@ from rdflib.sparql.sparqlOperators import getValue
 from rdflib.sparql.graphPattern import BasicGraphPattern
 from rdflib.sparql.Unbound import Unbound
 from rdflib.sparql.Query import _variablesToArray, queryObject, SessionBNode
-from rdflib.graph import ConjunctiveGraph, Graph, BackwardCompatGraph,ReadOnlyGraphAggregate
+from rdflib.graph import ConjunctiveGraph, Graph, ReadOnlyGraphAggregate
 from rdflib import URIRef,Variable,BNode, Literal, plugin, RDF
 from rdflib.store import Store
 from rdflib.identifier import Identifier
