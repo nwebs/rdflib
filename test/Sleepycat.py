@@ -1,7 +1,7 @@
 import logging
 _logger = logging.getLogger(__name__)
 
-from test.graph import GraphTestCase
+from test.test_graph import GraphTestCase
 
 try:
     from rdflib.store.Sleepycat import Sleepycat
