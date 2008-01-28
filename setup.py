@@ -56,6 +56,36 @@ setup(
     test_suite = 'nose.collector',
 
     entry_points = {        
+        'rdflib.plugins.store': [
+            'default = rdflib.store.IOMemory:IOMemory',
+            'IOMemory = rdflib.store.IOMemory:IOMemory',
+            'Memory = rdflib.store.Memory:Memory',
+            'Sleepycat = rdflib.store.Sleepycat:Sleepycat',
+            'BerkeleyDB = rdflib.store.BerkeleyDB:BerkeleyDB', 
+            'BDBOptimized = rdflib.store.BDBOptimized:BDBOptimized',
+            'MySQL = rdflib.store.MySQL:MySQL',
+            'SQLite = rdflib.store.SQLite:SQLite',
+            'ZODB = rdflib.store.ZODB:ZODB',
+            'sqlobject = rdflib.store._sqlobject:SQLObject',
+            'Redland = rdflib.store.Redland:Redland',
+            ],
+        'rdflib.plugins.serializer': [
+            'rdf =     rdflib.syntax.serializers.XMLSerializer:XMLSerializer',
+            'xml =     rdflib.syntax.serializers.XMLSerializer:XMLSerializer',
+            'rdf/xml =     rdflib.syntax.serializers.XMLSerializer:XMLSerializer',
+            'pretty-xml =     rdflib.syntax.serializers.PrettyXMLSerializer:PrettyXMLSerializer',
+            'nt =     rdflib.syntax.serializers.NTSerializer:NTSerializer',
+            'turtle =     rdflib.syntax.serializers.TurtleSerializer:TurtleSerializer',
+            'n3 =     rdflib.syntax.serializers.N3Serializer:N3Serializer',
+            ],
+        'rdflib.plugins.parser': [
+            'xml =     rdflib.syntax.parsers.RDFXMLParser:RDFXMLParser',
+            'trix =     rdflib.syntax.parsers.TriXParser:TriXParser',
+            'n3 =     rdflib.syntax.parsers.N3Parser:N3Parser',
+            'notation3 =     rdflib.syntax.parsers.N3Parser:N3Parser',
+            'nt =     rdflib.syntax.parsers.NTParser:NTParser',
+            'rdfa =     rdflib.syntax.parsers.RDFaParser:RDFaParser',
+            ],
         'console_scripts': [
             'rdfpipe = rdflib_tools.RDFPipe:main',
         ],

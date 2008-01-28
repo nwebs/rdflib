@@ -14,6 +14,7 @@ def register(name, kind, module_path, class_name):
     _module_info[name] = (module_path, class_name)
 
 def get(name, kind):
+    register_from_entry_points(name, kind)
     _module_info = _kinds.get(kind)
     if _module_info and name in _module_info:
         module_path, class_name = _module_info[name]
@@ -24,6 +25,7 @@ def get(name, kind):
         try:
             Adaptee = get(name, _adaptors[kind])
         except Exception, e:
+            #print "kind id:", id(kind)
             raise Exception("could not get plugin for %s, %s: %s" % (name, kind, e))
         def const(*args, **keywords):
             return Adaptor(Adaptee(*args, **keywords))
@@ -33,87 +35,50 @@ def register_adaptor(adaptor, adaptee):
     _adaptors[adaptor] = adaptee
 
 
+import warnings
+entry_points = [
+    ('rdflib.plugins.store', Store),
+    ('rdflib.plugins.serializer', serializers.Serializer),
+    ('rdflib.plugins.parser', parsers.Parser),
+                ]
+    
+_entry_point_loaded = {}
+def register_from_entry_points(name=None, kind=None):
+    if name is not None and kind is not None:
+        if (name, kind) in _entry_point_loaded:
+            return
+    #print "register_from_entry_points: ", name, kind
+    from pkg_resources import iter_entry_points
+    for entry_point, entry_point_kind in entry_points:
+        for ep in iter_entry_points(entry_point):
+            #print "ep.name", ep.name
+            # only load if name and kind match. None matches all.
+            if not (name is None or name==ep.name):
+                continue
+            if not (kind is None or kind==entry_point_kind):
+                continue
+            if (ep.name, kind) in _entry_point_loaded:
+                continue
+
+            _entry_point_loaded[(ep.name, kind)] = True
+            try:
+                plugcls = ep.load()
+            except KeyboardInterrupt:
+                raise
+            except Exception, e:
+                # never want a plugin load to kill the test run
+                # but we can't log here because the logger is not yet
+                # configured
+                warnings.warn("Unable to load plugin %s: %s" % (ep, e),
+                              RuntimeWarning)
+                continue
+            #print "registering: ", ep.name, id(kind)
+            register(ep.name, kind, plugcls.__module__, plugcls.__name__)
+
+    
+
 register_adaptor(serializer.Serializer, serializers.Serializer)
-#register_adaptor(parser.Parser, parsers.Parser)
 
-
-register('rdf', serializers.Serializer,
-         'rdflib.syntax.serializers.XMLSerializer', 'XMLSerializer')
-
-register('xml', serializers.Serializer,
-         'rdflib.syntax.serializers.XMLSerializer', 'XMLSerializer')
-
-register('rdf/xml', serializers.Serializer,
-         'rdflib.syntax.serializers.XMLSerializer', 'XMLSerializer')
-
-register('pretty-xml', serializers.Serializer,
-         'rdflib.syntax.serializers.PrettyXMLSerializer', 'PrettyXMLSerializer')
-
-register('nt', serializers.Serializer,
-         'rdflib.syntax.serializers.NTSerializer', 'NTSerializer')
-
-register('turtle', serializers.Serializer,
-         'rdflib.syntax.serializers.TurtleSerializer', 'TurtleSerializer')
-
-register('n3', serializers.Serializer,
-         'rdflib.syntax.serializers.N3Serializer', 'N3Serializer')
-
-register('xml', parsers.Parser,
-         'rdflib.syntax.parsers.RDFXMLParser', 'RDFXMLParser')
-
-register('trix', parsers.Parser,
-         'rdflib.syntax.parsers.TriXParser', 'TriXParser')
-
-register('n3', parsers.Parser,
-         'rdflib.syntax.parsers.N3Parser', 'N3Parser')
-
-register('notation3', parsers.Parser,
-         'rdflib.syntax.parsers.N3Parser', 'N3Parser')
-
-register('nt', parsers.Parser,
-         'rdflib.syntax.parsers.NTParser', 'NTParser')
-
-register('n3', parsers.Parser,
-         'rdflib.syntax.parsers.N3Parser', 'N3Parser')
-
-register('rdfa', parsers.Parser,
-         'rdflib.syntax.parsers.RDFaParser', 'RDFaParser')
-
-register('default', Store,
-         'rdflib.store.IOMemory', 'IOMemory')
-
-register('IOMemory', Store,
-         'rdflib.store.IOMemory', 'IOMemory')
-
-register('Memory', Store,
-         'rdflib.store.Memory', 'Memory')
-
-register('Sleepycat', Store,
-         'rdflib.store.Sleepycat', 'Sleepycat')
-
-register('BerkeleyDB', Store,
-         'rdflib.store.BerkeleyDB', 'BerkeleyDB')
-
-register('BDBOptimized', Store,
-         'rdflib.store.BDBOptimized', 'BDBOptimized')
-
-register('MySQL', Store,
-         'rdflib.store.MySQL', 'MySQL')
-
-register('SQLite', Store,
-         'rdflib.store.SQLite', 'SQLite')
-
-register('ZODB', Store,
-         'rdflib.store.ZODB', 'ZODB')
-
-register('sqlobject', Store,
-         'rdflib.store._sqlobject', 'SQLObject')
-
-register('Redland', Store,
-         'rdflib.store.Redland', 'Redland')
-
-register('MySQL', Store,
-         'rdflib.store.MySQL', 'MySQL')
 
 register("sparql", sparql.Processor,
          'rdflib.sparql.bison.Processor', 'Processor')
