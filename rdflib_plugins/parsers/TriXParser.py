@@ -1,9 +1,9 @@
-from rdflib.syntax.parsers import Parser
-from rdflib.graph import ConjunctiveGraph
-
 from xml.sax import make_parser
 from xml.sax.saxutils import handler
 from xml.sax.handler import ErrorHandler
+
+from rdflib.syntax.parsers import Parser
+from rdflib.graph import ConjunctiveGraph
 
 from rdflib_plugins.parsers.TriXHandler import TriXHandler
 

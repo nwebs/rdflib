@@ -1,9 +1,9 @@
 import unittest
 
-from rdflib import URIRef, BNode, Literal
+from rdflib.term import URIRef, BNode, Literal
 
 from rdflib.graph import Graph
-from rdflib import RDF
+from rdflib.namespace import RDF
 
 CORE_SYNTAX_TERMS = [RDF.RDF, RDF.ID, RDF.about, RDF.parseType, RDF.resource, RDF.nodeID, RDF.datatype]
 

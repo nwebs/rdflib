@@ -1,5 +1,7 @@
-from rdflib.namespace import Namespace
-from rdflib import plugin,RDF,RDFS,URIRef, StringInputSource, Literal
+from rdflib.namespace import Namespace, RDF, RDFS
+from rdflib import plugin
+from rdflib.term import URIRef, Literal
+from rdflib.stringinputsource import StringInputSource
 from rdflib.graph import Graph,ReadOnlyGraphAggregate,ConjunctiveGraph
 
 import sys

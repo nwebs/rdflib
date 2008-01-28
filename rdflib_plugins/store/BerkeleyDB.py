@@ -1,15 +1,16 @@
-import warnings, thread, sys
-
-from rdflib.store import Store, VALID_STORE, CORRUPTED_STORE, NO_STORE, UNKNOWN
-from rdflib_plugins.store.Sleepycat import Sleepycat
-from rdflib.uriref import URIRef
 from bsddb import db
+import warnings, thread, sys
+import logging
 from os import mkdir, rmdir, makedirs
 from os.path import exists, abspath, join
 from urllib import pathname2url
 from threading import Thread
 from time import sleep, time
-import logging
+
+from rdflib.store import Store, VALID_STORE, CORRUPTED_STORE, NO_STORE, UNKNOWN
+from rdflib_plugins.store.Sleepycat import Sleepycat
+from rdflib.term import URIRef
+
 
 if db.version() < (4,3,29):
     warnings.warn("Your BDB library may not be supported.")

@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 #=======================================================================
-from rdflib import ConjunctiveGraph, URIRef, Literal, BNode, RDFS
+from rdflib.graph import ConjunctiveGraph
+from rdflib.term import URIRef, Literal, BNode
+from rdflib.namespace import RDFS
 from test.serializers import SerializerTestBase, serialize, serialize_and_load
 
 from rdflib_plugins.serializers.PrettyXMLSerializer import PrettyXMLSerializer

@@ -1,6 +1,7 @@
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
 #=======================================================================
-from rdflib import ConjunctiveGraph, BNode
+from rdflib.graph import ConjunctiveGraph
+from rdflib.term import BNode
 from StringIO import StringIO
 #=======================================================================
 

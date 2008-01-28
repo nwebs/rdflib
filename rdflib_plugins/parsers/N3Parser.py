@@ -1,6 +1,7 @@
 from rdflib.syntax.parsers import Parser
 
-from rdflib import URIRef, BNode, Literal, RDF, Variable
+from rdflib.term import URIRef, BNode, Literal, Variable
+from rdflib.namespace import RDF
 from rdflib.util import from_n3
 from rdflib.graph import Graph, QuotedGraph, ConjunctiveGraph
 

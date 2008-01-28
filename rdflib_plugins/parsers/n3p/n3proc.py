@@ -10,7 +10,8 @@ usage:
    %prog [options] <URI>
 """
 
-from rdflib import URIRef, BNode, Literal, Variable, Namespace
+from rdflib.term import URIRef, BNode, Literal, Variable
+from rdflib.namespace import Namespace
 from rdflib.graph import QuotedGraph
 
 import sys, os.path, re, time, urllib

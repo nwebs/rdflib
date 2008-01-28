@@ -1,8 +1,8 @@
 from rdflib.syntax.serializer import Serializer
 
-from rdflib import RDF
+from rdflib.namespace import RDF
 
-from rdflib import URIRef, Literal, BNode
+from rdflib.term import URIRef, Literal, BNode
 from rdflib.util import first, uniq, more_than
 from rdflib.collection import Collection
 

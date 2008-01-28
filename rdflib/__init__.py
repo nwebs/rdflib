@@ -21,16 +21,3 @@ g.serialize(format='n3')
 __version__ = "2.5.0"
 __date__ = "not/yet/released"
 
-from rdflib.uriref import URIRef
-from rdflib.bnode import BNode
-from rdflib.literal import Literal
-from rdflib.variable import Variable
-from rdflib.namespace import Namespace
-from rdflib.graph import Graph
-from rdflib.graph import ConjunctiveGraph
-
-from rdflib.fileinputsource import FileInputSource
-from rdflib.urlinputsource import URLInputSource
-from rdflib.stringinputsource import StringInputSource
-
-from rdflib.namespace import RDF, RDFS

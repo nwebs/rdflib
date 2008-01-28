@@ -4,7 +4,7 @@ from rdflib.graph import Graph
 from rdflib.exceptions import SubjectTypeError
 from rdflib.exceptions import PredicateTypeError
 from rdflib.exceptions import ObjectTypeError
-from rdflib.uriref import URIRef
+from rdflib.term import URIRef
 
 foo = URIRef("foo")
 

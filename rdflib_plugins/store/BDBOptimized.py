@@ -1,10 +1,11 @@
+import logging
 import warnings
 from bsddb import db
 from urllib import pathname2url
 from os import mkdir
 from os.path import exists, abspath
 
-from rdflib import URIRef
+from rdflib.term import URIRef
 from rdflib.store import Store, VALID_STORE, CORRUPTED_STORE, NO_STORE, UNKNOWN
 
 SUPPORT_MULTIPLE_STORE_ENVIRON = False
@@ -14,7 +15,7 @@ warnings.warn("The BDBOptimized store is experimental and not yet recommended fo
 if db.version() < (4,3,29):
     warnings.warn("Your BDB library may not be supported.")
     
-import logging
+
 _logger = logging.getLogger(__name__)
 
 # TODO: performance testing?

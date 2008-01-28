@@ -9,11 +9,11 @@ import unittest
 import ntriples
 
 from rdfdiff import Graph
-from rdflib import ConjunctiveGraph as RGraph
-from rdflib import StringInputSource
-from rdflib import URIRef
-from rdflib import BNode
-from rdflib import Literal
+from rdflib.graph import ConjunctiveGraph as RGraph
+from rdflib.stringinputsource import StringInputSource
+from rdflib.term import URIRef
+from rdflib.term import BNode
+from rdflib.term import Literal
 
 
 def main():

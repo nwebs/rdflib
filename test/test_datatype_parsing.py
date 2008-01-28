@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 import unittest
 from pprint import pprint
-from rdflib import ConjunctiveGraph, URIRef, Literal, RDFS, Namespace
-from rdflib.literal import _XSD_NS
 from StringIO import StringIO
 from sets import Set
+
+from rdflib.graph import ConjunctiveGraph
+from rdflib.term import URIRef, Literal
+from rdflib.namespace import  Namespace, RDFS
+from rdflib.term import _XSD_NS
 
 testContent = """
 @prefix    :        <http://example.org/things#> .

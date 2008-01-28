@@ -5,15 +5,16 @@ This module defines a Collection class.
 
 """
 
-from rdflib import RDF, BNode, Literal
+from rdflib.term import BNode, Literal
+from rdflib.namespace import RDF
 from rdflib.graph import Graph
 
 class Collection(object):
     """
     See 3.3.5 Emulating container types: http://docs.python.org/ref/sequence-types.html#l2h-232
 
-    >>> from rdflib.bnode import BNode
-    >>> from rdflib.literal import Literal
+    >>> from rdflib.term import BNode
+    >>> from rdflib.term import Literal
     >>> from rdflib.graph import Graph    
     >>> listName = BNode()
     >>> g = Graph('IOMemory')
@@ -45,8 +46,8 @@ class Collection(object):
 
     def n3(self):
         """
-        >>> from rdflib.bnode import BNode
-        >>> from rdflib.literal import Literal
+        >>> from rdflib.term import BNode
+        >>> from rdflib.term import Literal
         >>> from rdflib.graph import Graph    
         >>> listName = BNode()
         >>> g = Graph('IOMemory')
@@ -130,7 +131,7 @@ class Collection(object):
 
     def __delitem__(self, key):
         """
-        >>> from rdflib import RDF, RDFS
+        >>> from rdflib.namespace import RDF, RDFS
         >>> from pprint import pformat
         >>> g=Graph()
         >>> a=BNode('foo')

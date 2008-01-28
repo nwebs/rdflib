@@ -35,11 +35,12 @@ Copyright (c) 2006, Elias Torres <elias@torrez.us>
 
 import sys, re, urllib, urlparse, cStringIO, string
 from xml.dom import pulldom
+
 from rdflib.syntax.parsers import Parser
 from rdflib.graph import ConjunctiveGraph
-from rdflib.uriref import URIRef
-from rdflib.bnode import BNode
-from rdflib.literal import Literal
+from rdflib.term import URIRef
+from rdflib.term import BNode
+from rdflib.term import Literal
 from rdflib.namespace import Namespace
 
 __version__ = "$Id$"

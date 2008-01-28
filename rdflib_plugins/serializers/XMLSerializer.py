@@ -1,16 +1,16 @@
 from __future__ import generators
 
+from xml.sax.saxutils import quoteattr, escape
+
 from rdflib.syntax.serializer import Serializer
 
-from rdflib.uriref import URIRef
-from rdflib.literal import Literal
-from rdflib.bnode import BNode
+from rdflib.term import URIRef
+from rdflib.term import Literal
+from rdflib.term import BNode
 
 from rdflib.util import uniq
 from rdflib.exceptions import Error
 from rdflib.syntax.xml_names import split_uri
-
-from xml.sax.saxutils import quoteattr, escape
 
 
 class XMLSerializer(Serializer):

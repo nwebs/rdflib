@@ -1,6 +1,8 @@
 import unittest
 
-from rdflib import Literal, Namespace, StringInputSource
+from rdflib.term import Literal
+from rdflib.namespace import Namespace
+from rdflib.stringinputsource import StringInputSource
 from rdflib.graph import Graph
 
 cases = ['no quotes',

@@ -1,15 +1,17 @@
 from __future__ import generators
-from rdflib import BNode
-from rdflib import RDF
-from rdflib.literal import Literal
-from rdflib.uriref import URIRef
-from rdflib.bnode import BNode
+
 from pprint import pprint
 import sha,sys, weakref
+
+from rdflib.namespace import RDF
+from rdflib.term import URIRef
+from rdflib.term import BNode
+from rdflib.term import Literal
 from rdflib.term_utils import *
 from rdflib.graph import QuotedGraph
 from rdflib.store.REGEXMatching import REGEXTerm, PYTHON_REGEX
 from rdflib.store import Store
+
 Any = None
 
 COUNT_SELECT   = 0

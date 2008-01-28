@@ -1,13 +1,15 @@
-from rdflib.uriref import URIRef
-from rdflib.bnode import BNode
-from rdflib.literal import Literal
-from rdflib.variable import Variable
+from cPickle import loads
+
+from rdflib.term import URIRef
+from rdflib.term import BNode
+from rdflib.term import Literal
+from rdflib.term import Variable
+from rdflib.term import Statement
 from rdflib.graph import Graph, QuotedGraph
-from rdflib.statement import Statement
 
 from rdflib.exceptions import SubjectTypeError, PredicateTypeError, ObjectTypeError, ContextTypeError
 from rdflib.compat import rsplit
-from cPickle import loads
+
 
 def list2set(seq):
     seen = set()

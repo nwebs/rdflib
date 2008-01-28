@@ -1,4 +1,10 @@
-from rdflib import URIRef
+"""
+TODO:
+
+"""
+
+from rdflib.term import URIRef
+
 
 class Serializer(object):
 

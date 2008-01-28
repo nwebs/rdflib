@@ -7,7 +7,7 @@ Instanciating Graphs with default store (Memory) and default identifier (a BNode
     >>> g.store.__class__.__name__
     'Memory'
     >>> g.identifier.__class__
-    <class 'rdflib.bnode.BNode'>
+    <class 'rdflib.term.BNode'>
 
 Instanciating Graphs with a specific kind of store (IOMemory) and a default identifier (a BNode):
 
@@ -45,10 +45,10 @@ Adding / removing reified triples to Graph and iterating over it directly or via
     4
     >>> for s,p,o in g:  print type(s)
     ...
-    <class 'rdflib.bnode.BNode'>
-    <class 'rdflib.bnode.BNode'>
-    <class 'rdflib.bnode.BNode'>
-    <class 'rdflib.bnode.BNode'>
+    <class 'rdflib.term.BNode'>
+    <class 'rdflib.term.BNode'>
+    <class 'rdflib.term.BNode'>
+    <class 'rdflib.term.BNode'>
     
     >>> for s,p,o in g.triples((None,RDF.object,None)):  print o
     ...
@@ -120,27 +120,27 @@ Using Namespace class:
     >>> RDFLib['Graph']
     rdflib.URIRef('http://rdflib.netGraph')
 
-SPARQL Queries
+# SPARQL Queries
 
-    >>> print len(g)
-    3
-    >>> q = \'\'\'
-    ... PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT ?pred WHERE { ?stmt rdf:predicate ?pred. }
-    ... \'\'\'   
-    >>> for pred in g.query(q):  print pred
-    (rdflib.URIRef('http://www.w3.org/2000/01/rdf-schema#label'),)
+#     >>> print len(g)
+#     3
+#     >>> q = \'\'\'
+#     ... PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT ?pred WHERE { ?stmt rdf:predicate ?pred. }
+#     ... \'\'\'   
+#     >>> for pred in g.query(q):  print pred
+#     (rdflib.URIRef('http://www.w3.org/2000/01/rdf-schema#label'),)
 
-SPARQL Queries with namespace bindings as argument
+# SPARQL Queries with namespace bindings as argument
 
-    >>> nsMap = {u"rdf":RDF.RDFNS}
-    >>> for pred in g.query("SELECT ?pred WHERE { ?stmt rdf:predicate ?pred. }", initNs=nsMap): print pred
-    (rdflib.URIRef('http://www.w3.org/2000/01/rdf-schema#label'),)
+#     >>> nsMap = {u"rdf":RDF.RDFNS}
+#     >>> for pred in g.query("SELECT ?pred WHERE { ?stmt rdf:predicate ?pred. }", initNs=nsMap): print pred
+#     (rdflib.URIRef('http://www.w3.org/2000/01/rdf-schema#label'),)
 
-Parameterized SPARQL Queries
+# Parameterized SPARQL Queries
 
-    >>> top = { Variable("?term") : RDF.predicate }
-    >>> for pred in g.query("SELECT ?pred WHERE { ?stmt ?term ?pred. }", initBindings=top): print pred
-    (rdflib.URIRef('http://www.w3.org/2000/01/rdf-schema#label'),)
+#     >>> top = { Variable("?term") : RDF.predicate }
+#     >>> for pred in g.query("SELECT ?pred WHERE { ?stmt ?term ?pred. }", initBindings=top<): print pred
+#     (rdflib.URIRef('http://www.w3.org/2000/01/rdf-schema#label'),)
 
 """
 from __future__ import generators
@@ -153,6 +153,9 @@ import shutil
 import os
 from urlparse import urlparse
 
+from xml.sax.xmlreader import InputSource
+from xml.sax.saxutils import prepare_input_source
+
 try:
     from hashlib import md5
 except ImportError:
@@ -164,8 +167,8 @@ except ImportError:
     from StringIO import StringIO
 
 
-from rdflib import URIRef, BNode, Namespace, Literal, Variable
-from rdflib.namespace import RDF, RDFS
+from rdflib.term import URIRef, BNode, Literal, Variable
+from rdflib.namespace import Namespace, RDF, RDFS
 
 from rdflib.node import Node
 
@@ -178,24 +181,22 @@ from rdflib import query
 from rdflib.syntax.serializer import Serializer
 from rdflib.syntax.parsers import Parser
 from rdflib.syntax.NamespaceManager import NamespaceManager
-from rdflib import sparql
+
 from rdflib.urlinputsource import URLInputSource
-from xml.sax.xmlreader import InputSource
-from xml.sax.saxutils import prepare_input_source
 
 
-def describe(terms,bindings,graph):
-    """ 
-    Default DESCRIBE returns all incomming and outgoing statements about the given terms 
-    """
-    from rdflib.sparql.sparqlOperators import getValue
-    g=Graph()
-    terms=[getValue(i)(bindings) for i in terms]
-    for s,p,o in graph.triples_choices((terms,None,None)):
-        g.add((s,p,o))
-    for s,p,o in graph.triples_choices((None,None,terms)):
-        g.add((s,p,o))
-    return g
+# def describe(terms,bindings,graph):
+#     """ 
+#     Default DESCRIBE returns all incomming and outgoing statements about the given terms 
+#     """
+#     from rdflib.sparql.sparqlOperators import getValue
+#     g=Graph()
+#     terms=[getValue(i)(bindings) for i in terms]
+#     for s,p,o in graph.triples_choices((terms,None,None)):
+#         g.add((s,p,o))
+#     for s,p,o in graph.triples_choices((None,None,terms)):
+#         g.add((s,p,o))
+#     return g
 
 class Graph(Node):
     """An RDF Graph
@@ -742,7 +743,7 @@ class Graph(Node):
     def query(self, strOrQuery, initBindings={}, initNs={}, DEBUG=False,
               dataSetBase=None,
               processor="sparql",
-              extensionFunctions={sparql.DESCRIBE:describe}):
+              ): #extensionFunctions={sparql.DESCRIBE:describe}):
         """
         Executes a SPARQL query (eventually will support Versa queries with same method) against this Graph
         strOrQuery - Is either a string consisting of the SPARQL query or an instance of rdflib.sparql.bison.Query.Query
@@ -760,7 +761,7 @@ class Graph(Node):
                                                                    dataSetBase,
                                                                    extensionFunctions))
 
-        processor_plugin = plugin.get(processor, sparql.Processor)(self.store)
+        processor_plugin = plugin.get(processor, query.Processor)(self.store)
         qresult_plugin = plugin.get('SPARQLQueryResult', query.Result)
 
         res = processor_plugin.query(strOrQuery, 

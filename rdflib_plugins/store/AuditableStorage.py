@@ -10,10 +10,11 @@ store instances), but no durability (transactions are persisted in memory and wo
  be available to reverse operations after the systeme fails): A and I out of ACID.
 """
 
-from rdflib.store import Store
-from rdflib.graph import Graph, ConjunctiveGraph
 from pprint import pprint
 import threading
+
+from rdflib.store import Store
+from rdflib.graph import Graph, ConjunctiveGraph
 
 destructiveOpLocks = {
     'add':None,

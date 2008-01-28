@@ -5,9 +5,12 @@ xml:base='' should resolve to the given publicID per XML Base specification
 and RDF/XML dependence on it
 """
 
-from rdflib import ConjunctiveGraph, Literal, URIRef, Namespace, RDF
 from StringIO import StringIO
 import unittest
+
+from rdflib.graph import ConjunctiveGraph
+from rdflib.term import URIRef, Literal
+from rdflib.namespace import Namespace, RDF
 
 FOAF = Namespace('http://xmlns.com/foaf/0.1/')
 

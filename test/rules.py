@@ -1,7 +1,8 @@
 import unittest
 from tempfile import mkdtemp
 
-from rdflib import *
+from rdflib.term import URIRef, BNode, Literal, Variable
+from rdflib.namespace import Namespace
 from rdflib.graph import Graph
 
 LOG = Namespace("http://www.w3.org/2000/10/swap/log#")

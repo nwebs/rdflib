@@ -4,7 +4,7 @@ store implementations.
 
 """
 
-from rdflib import *
+from rdflib.term import URIRef, BNode, Variable, Literal
 from rdflib.graph import QuotedGraph, Graph, ConjunctiveGraph
 
 #Takes an instance of a Graph (Graph, QuotedGraph, or ConjunctiveGraph)

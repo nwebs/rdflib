@@ -14,6 +14,10 @@ Command line usage:
 
 import re
 
+from rdflib.term import URIRef as URI
+from rdflib.term import BNode as bNode
+from rdflib.term import Literal
+
 uriref = r'<([^:]+:[^\s"<>]+)>'
 literal = r'"([^"\\]*(?:\\.[^"\\]*)*)"'
 litinfo = r'(?:@([a-z]+(?:-[a-z0-9]+)*)|\^\^' + uriref + r')?'
@@ -37,10 +41,6 @@ class Node(unicode): pass
 #    def __new__(cls, lit, lang=None, dtype=None):
 #       n = str(lang) + ' ' + str(dtype) + ' ' + lit
 #       return unicode.__new__(cls, n)
-
-from rdflib import URIRef as URI
-from rdflib import BNode as bNode
-from rdflib import Literal
 
 class Sink(object):
    def __init__(self):

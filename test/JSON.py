@@ -1,7 +1,12 @@
-from rdflib import ConjunctiveGraph, plugin
-from rdflib.store import Store
+"""
+"""
+
 from StringIO import StringIO
 import unittest
+
+from rdflib.graph import ConjunctiveGraph
+from rdflib import plugin
+from rdflib.store import Store
 
 test_data = """ 
 @prefix foaf:       <http://xmlns.com/foaf/0.1/> .

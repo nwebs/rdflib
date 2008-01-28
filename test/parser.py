@@ -1,7 +1,8 @@
 import unittest
 
 from rdflib.graph import Graph
-from rdflib import URIRef, BNode, Literal, RDF, RDFS
+from rdflib.term import URIRef, BNode, Literal
+from rdflib.namespace import RDF, RDFS
 from rdflib.stringinputsource import StringInputSource
 
 

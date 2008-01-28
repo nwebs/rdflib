@@ -1,6 +1,3 @@
-from rdflib.store import Store, VALID_STORE, CORRUPTED_STORE, NO_STORE, UNKNOWN
-from rdflib.uriref import URIRef
-
 from bsddb import db
 
 from os import mkdir
@@ -9,6 +6,10 @@ from urllib import pathname2url
 from threading import Thread
 
 import logging
+
+from rdflib.store import Store, VALID_STORE, CORRUPTED_STORE, NO_STORE, UNKNOWN
+from rdflib.term import URIRef
+
 _logger = logging.getLogger(__name__)
 
 class Sleepycat(Store):

@@ -1,8 +1,7 @@
 import unittest
 
-from rdflib import *
 from rdflib.graph import Graph
-from rdflib import RDF
+from rdflib.namespace import Namespace, RDF
 from rdflib.stringinputsource import StringInputSource
 
 FOAF = Namespace("http://xmlns.com/foaf/0.1/")

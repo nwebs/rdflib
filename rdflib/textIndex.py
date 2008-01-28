@@ -2,20 +2,20 @@
 This module defines a TextIndex class.
 """
 
+import logging
+import re #, stopdict
+
 try:
     from hashlib import md5
 except ImportError:
     from md5 import md5
     
-from rdflib.bnode import BNode
+from rdflib.term import BNode
 from rdflib.graph import ConjunctiveGraph
-from rdflib.literal import Literal
+from rdflib.term import Literal
 from rdflib.namespace import NamespaceDict as Namespace
-from rdflib.uriref import URIRef
+from rdflib.term import URIRef
 from rdflib.store import TripleAddedEvent, TripleRemovedEvent
-
-import logging
-import re #, stopdict
 
 _logger = logging.getLogger(__name__)
 

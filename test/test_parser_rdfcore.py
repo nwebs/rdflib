@@ -1,22 +1,21 @@
+import sys
 import unittest
+import logging
+from encodings.utf_8 import StreamWriter
 
-from rdflib import URIRef, BNode, Literal, RDF, RDFS
-from rdflib.namespace import Namespace
+from rdflib.term import URIRef, BNode, Literal
+from rdflib.namespace import Namespace, RDF, RDFS
 from rdflib.exceptions import ParserError
 
 from rdflib.graph import Graph
 from rdflib.util import first
 
 
-import logging
-
 _logger = logging.getLogger("parser_rdfcore")
 
 verbose = 0
 
-from encodings.utf_8 import StreamWriter
 
-import sys
 sw = StreamWriter(sys.stdout)
 def write(msg):
     _logger.info(msg+"\n")

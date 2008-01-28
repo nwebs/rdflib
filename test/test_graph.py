@@ -2,7 +2,8 @@ import unittest
 
 from tempfile import mkdtemp
 
-from rdflib import URIRef, BNode, Literal, RDF
+from rdflib.term import URIRef, BNode, Literal
+from rdflib.namespace import RDF
 from rdflib.graph import Graph
 
 class GraphTestCase(unittest.TestCase):
@@ -122,7 +123,7 @@ class GraphTestCase(unittest.TestCase):
     def testStatementNode(self):
         graph = self.graph
 
-        from rdflib.statement import Statement
+        from rdflib.term import Statement
         c = URIRef("http://example.org/foo#c")
         r = URIRef("http://example.org/foo#r")
         s = Statement((self.michel, self.likes, self.pizza), c)
