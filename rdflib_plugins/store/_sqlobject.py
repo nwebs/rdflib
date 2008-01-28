@@ -3,7 +3,7 @@ from __future__ import generators
 __metaclass__ = type
 
 import logging
-_logger = logging.getLogger("rdflib.store._sqlobject")
+_logger = logging.getLogger(__name__)
 
 import re
 _literal = re.compile(r'''"(?P<value>[^@&]*)"(?:@(?P<lang>[^&]*))?(?:&<(?P<datatype>.*)>)?''')

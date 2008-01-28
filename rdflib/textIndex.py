@@ -9,7 +9,7 @@ from rdflib.literal import Literal
 from rdflib.namespace import NamespaceDict as Namespace
 from rdflib.uriref import URIRef
 from rdflib.store import TripleAddedEvent, TripleRemovedEvent
-from rdflib.store.IOMemory import IOMemory
+
 import logging
 import re #, stopdict
 

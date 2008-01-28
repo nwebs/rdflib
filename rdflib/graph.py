@@ -1,11 +1,11 @@
 """
 A Graph and ConjunctiveGraph interface for working with an RDF Graph.
 
-Instanciating Graphs with default store (IOMemory) and default identifier (a BNode):
+Instanciating Graphs with default store (Memory) and default identifier (a BNode):
 
     >>> g=Graph()
-    >>> g.store.__class__
-    <class 'rdflib.store.IOMemory.IOMemory'>
+    >>> g.store.__class__.__name__
+    'Memory'
     >>> g.identifier.__class__
     <class 'rdflib.bnode.BNode'>
 
@@ -13,12 +13,9 @@ Instanciating Graphs with a specific kind of store (IOMemory) and a default iden
 
 Other store kinds: Sleepycat, MySQL, ZODB, SQLite
 
-    >>> store = plugin.get('IOMemory',Store)()
-    >>> store.__class__.__name__
-    'IOMemory'
-    >>> graph = Graph(store)
-    >>> graph.store.__class__
-    <class 'rdflib.store.IOMemory.IOMemory'>
+    >>> graph = Graph(store="Sleepycat")
+    >>> graph.store.__class__.__name__
+    'Sleepycat'
 
 Instanciating Graphs with Sleepycat store and an identifier - <http://rdflib.net>:
 
@@ -103,7 +100,7 @@ is the Graph (or subclass thereof) instance in which the triple was asserted:
 Parsing N3 from StringIO
 
     >>> from cStringIO import StringIO
-    >>> g2=Graph()
+    >>> g2=ConjunctiveGraph()
     >>> src = \"\"\"
     ... @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
     ... @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -267,7 +264,7 @@ class Graph(Node):
       => {?cg a :ConjunctiveGraph;:default_context ?subGraphOf} .
     """
 
-    def __init__(self, store='default', identifier=None,
+    def __init__(self, store='Memory', identifier=None,
                  namespace_manager=None):
         super(Graph, self).__init__()
         self.__identifier = identifier or BNode()
@@ -805,7 +802,7 @@ class Graph(Node):
 
 class ConjunctiveGraph(Graph):
 
-    def __init__(self, store='default', identifier=None):
+    def __init__(self, store='IOMemory', identifier=None):
         super(ConjunctiveGraph, self).__init__(store)
         assert self.store.context_aware, ("ConjunctiveGraph must be backed by"
                                           " a context aware store.")
@@ -1136,8 +1133,6 @@ class ReadOnlyGraphAggregate(ConjunctiveGraph):
     def __reduce__(self):
         raise UnSupportedAggregateOperation()
 
-
-del md5
 
 def _test():
     import doctest

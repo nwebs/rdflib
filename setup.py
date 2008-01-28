@@ -57,17 +57,16 @@ setup(
 
     entry_points = {        
         'rdflib.plugins.store': [
-            'default = rdflib.store.IOMemory:IOMemory',
-            'IOMemory = rdflib.store.IOMemory:IOMemory',
-            'Memory = rdflib.store.Memory:Memory',
-            'Sleepycat = rdflib.store.Sleepycat:Sleepycat',
-            'BerkeleyDB = rdflib.store.BerkeleyDB:BerkeleyDB', 
-            'BDBOptimized = rdflib.store.BDBOptimized:BDBOptimized',
-            'MySQL = rdflib.store.MySQL:MySQL',
-            'SQLite = rdflib.store.SQLite:SQLite',
-            'ZODB = rdflib.store.ZODB:ZODB',
-            'sqlobject = rdflib.store._sqlobject:SQLObject',
-            'Redland = rdflib.store.Redland:Redland',
+            'IOMemory = rdflib_plugins.store.IOMemory:IOMemory',
+            'Memory = rdflib_plugins.store.Memory:Memory',
+            'Sleepycat = rdflib_plugins.store.Sleepycat:Sleepycat',
+            'BerkeleyDB = rdflib_plugins.store.BerkeleyDB:BerkeleyDB', 
+            'BDBOptimized = rdflib_plugins.store.BDBOptimized:BDBOptimized',
+            'MySQL = rdflib_plugins.store.MySQL:MySQL',
+            'SQLite = rdflib_plugins.store.SQLite:SQLite',
+            'ZODB = rdflib_plugins.store.ZODB:ZODB',
+            'sqlobject = rdflib_plugins.store._sqlobject:SQLObject',
+            'Redland = rdflib_plugins.store.Redland:Redland',
             ],
         'rdflib.plugins.serializer': [
             'rdf =     rdflib.syntax.serializers.XMLSerializer:XMLSerializer',
