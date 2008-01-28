@@ -170,7 +170,7 @@ except ImportError:
 from rdflib.term import URIRef, BNode, Literal, Variable
 from rdflib.namespace import Namespace, RDF, RDFS
 
-from rdflib.node import Node
+from rdflib.term import Term
 
 from rdflib import plugin, exceptions
 
@@ -198,7 +198,7 @@ from rdflib.urlinputsource import URLInputSource
 #         g.add((s,p,o))
 #     return g
 
-class Graph(Node):
+class Graph(Term):
     """An RDF Graph
 
     The constructor accepts one argument, the 'store'
