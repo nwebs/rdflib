@@ -24,7 +24,7 @@ rdfxml = """\
 </rdf:RDF>"""
 
 class RDFTestCase(unittest.TestCase):
-    backend = 'default'
+    backend = 'Memory'
     path = 'store'
 
     def setUp(self):

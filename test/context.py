@@ -6,7 +6,7 @@ from rdflib.graph import Graph
 
 class ContextTestCase(unittest.TestCase):
     #store = 'Memory'
-    store = 'default'
+    store = 'IOMemory'
     slowtest = True
 
     def setUp(self):

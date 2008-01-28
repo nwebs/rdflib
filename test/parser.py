@@ -6,7 +6,7 @@ from rdflib.stringinputsource import StringInputSource
 
 
 class ParserTestCase(unittest.TestCase):
-    backend = 'default'
+    backend = 'Memory'
     path = 'store'
 
     def setUp(self):

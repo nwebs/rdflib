@@ -35,7 +35,7 @@ try:
                 yield terms.Fact(_convert(s), _convert(p), _convert(o))
 
     class PychinkoTestCase(unittest.TestCase):
-        backend = 'default'
+        backend = 'Memory'
         def setUp(self):
             self.g = Graph(store=self.backend)
             self.g.open(configuration=mkdtemp())

@@ -6,7 +6,7 @@ from rdflib import URIRef, BNode, Literal, RDF
 from rdflib.graph import Graph
 
 class GraphTestCase(unittest.TestCase):
-    store_name = 'default'
+    store_name = 'Memory'
     path = None
     slowtest = True
 

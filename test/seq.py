@@ -5,7 +5,7 @@ from rdflib.graph import Graph
 from rdflib.stringinputsource import StringInputSource
 
 class SeqTestCase(unittest.TestCase):
-    backend = 'default'
+    backend = 'Memory'
     path = 'store'
 
     def setUp(self):

@@ -110,7 +110,7 @@ def _testNegative(uri, manifest):
     return result
 
 class ParserTestCase(unittest.TestCase):
-    store = 'default'
+    store = 'Memory'
     path = 'store'
     slowtest = True
 
@@ -167,7 +167,7 @@ results.add((system, RDFS.label, Literal("RDFLib")))
 results.add((system, RDFS.comment, Literal("")))
 
 
-if __name__ == "__main__":
+def testParser():
     manifest = Graph()
     manifest.parse("http://www.w3.org/2000/10/rdf-tests/rdfcore/Manifest.rdf")
     import sys, getopt
@@ -196,3 +196,7 @@ if __name__ == "__main__":
             unittest.main()
     finally:
         results.serialize("results.rdf")
+
+
+if __name__ == "__main__":
+    testParser()

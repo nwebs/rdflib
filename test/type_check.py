@@ -11,7 +11,7 @@ foo = URIRef("foo")
 
 class TypeCheckCase(unittest.TestCase):
     unstable = True # TODO: until we decide if we want to add type checking back to rdflib
-    backend = 'default'
+    backend = 'Memory'
     path = 'store'
 
     def setUp(self):

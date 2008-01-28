@@ -5,7 +5,7 @@ from rdflib.graph import Graph
 
 
 class GraphTest(unittest.TestCase):
-    backend = 'default'
+    backend = 'Memory'
     path = 'store'
 
     def setUp(self):

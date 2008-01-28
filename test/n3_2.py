@@ -16,7 +16,7 @@ _:foo a rdfs:Class.
 
 
 #Thorough test suite for formula-aware store
-def testN3Store(store="default", configString=None):
+def testN3Store(store="IOMemory", configString=None):
     g = ConjunctiveGraph(store=store)
     if configString:
         g.destroy(configString)

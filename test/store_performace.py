@@ -19,7 +19,7 @@ class StoreTestCase(unittest.TestCase):
     something other than a unit test... but for now we'll add it as a
     unit test.
     """
-    store = 'default'
+    store = 'Memory'
 
     def setUp(self):
         self.gcold = gc.isenabled()
