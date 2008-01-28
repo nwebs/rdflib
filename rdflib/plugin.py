@@ -1,3 +1,28 @@
+"""
+Plugin support for rdflib.
+
+There are a number of plugin points for rdflib: parser, serializer,
+store, query processor, and query result. Plugins can be registered
+either through setuptools entry_points or by calling
+rdflib.plugin.register directly.
+
+If you have a package that uses a setuptools based setup.py you can add the following to your setup:
+
+    entry_points = {        
+        'rdflib.plugins.parser': [
+            'nt =     rdflib.syntax.parsers.NTParser:NTParser',
+            ],
+        'rdflib.plugins.serializer': [
+            'nt =     rdflib.syntax.serializers.NTSerializer:NTSerializer',
+            ],
+        }
+
+For more information see:
+
+  http://peak.telecommunity.com/DevCenter/setuptools#dynamic-discovery-of-services-and-plugins
+
+"""
+
 import warnings
 
 from rdflib.store import Store
@@ -6,13 +31,13 @@ from rdflib.syntax import parsers
 from rdflib import query
 from rdflib.QueryResult import QueryResult
 
-entry_points = [
-    ('rdflib.plugins.store', Store),
-    ('rdflib.plugins.serializer', serializers.Serializer),
-    ('rdflib.plugins.parser', parsers.Parser),
-    ('rdflib.plugins.query_processor', query.Processor), 
-    ('rdflib.plugins.query_result', QueryResult)
-    ]
+entry_points = {
+    'rdflib.plugins.store': Store,
+    'rdflib.plugins.serializer': serializers.Serializer,
+    'rdflib.plugins.parser': parsers.Parser,
+    'rdflib.plugins.query_processor': query.Processor,
+    'rdflib.plugins.query_result': QueryResult
+    }
 
 _kinds = {}
 _adaptors = {}
@@ -24,7 +49,7 @@ def register(name, kind, module_path, class_name):
     _module_info[name] = (module_path, class_name)
 
 def get(name, kind):
-    register_from_entry_points(name, kind)
+    _register_from_entry_points(name, kind)
     _module_info = _kinds.get(kind)
     if _module_info and name in _module_info:
         module_path, class_name = _module_info[name]
@@ -35,7 +60,6 @@ def get(name, kind):
         try:
             Adaptee = get(name, _adaptors[kind])
         except Exception, e:
-            #print "kind id:", id(kind)
             raise Exception("could not get plugin for %s, %s: %s" % (name, kind, e))
         def const(*args, **keywords):
             return Adaptor(Adaptee(*args, **keywords))
@@ -44,17 +68,19 @@ def get(name, kind):
 def register_adaptor(adaptor, adaptee):
     _adaptors[adaptor] = adaptee
 
+# TODO: would be nice to get rid of the following bit of complexity,
+# the adaptor bit.
+register_adaptor(serializer.Serializer, serializers.Serializer) 
+
 
 _entry_point_loaded = {}
-def register_from_entry_points(name=None, kind=None):
+def _register_from_entry_points(name=None, kind=None):
     if name is not None and kind is not None:
         if (name, kind) in _entry_point_loaded:
             return
-    #print "register_from_entry_points: ", name, kind
     from pkg_resources import iter_entry_points
-    for entry_point, entry_point_kind in entry_points:
+    for entry_point, entry_point_kind in entry_points.iteritems():
         for ep in iter_entry_points(entry_point):
-            #print "ep.name", ep.name
             # only load if name and kind match. None matches all.
             if not (name is None or name==ep.name):
                 continue
@@ -75,12 +101,5 @@ def register_from_entry_points(name=None, kind=None):
                 warnings.warn("Unable to load plugin %s: %s" % (ep, e),
                               RuntimeWarning)
                 continue
-            #print "registering: ", ep.name, id(kind)
             register(ep.name, kind, plugcls.__module__, plugcls.__name__)
 
-    
-
-register_adaptor(serializer.Serializer, serializers.Serializer)
-
-
-         
