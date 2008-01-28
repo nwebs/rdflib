@@ -46,7 +46,7 @@ setup(
 
     ext_modules = [
         Extension(
-            name='rdflib.sparql.bison.SPARQLParserc',
+            name='rdflib_plugins.sparql.bison.SPARQLParserc',
             sources=['src/bison/SPARQLParser.c'],
             ),
         ],
@@ -86,10 +86,10 @@ setup(
             'rdfa =     rdflib_plugins.parsers.RDFaParser:RDFaParser',
             ],
         'rdflib.plugins.query_processor': [
-            'sparql = rdflib.sparql.bison.Processor:Processor',
+            'sparql = rdflib_plugins.sparql.bison.Processor:Processor',
             ],
         'rdflib.plugins.query_result': [
-            'SPARQLQueryResult = rdflib.sparql.QueryResult:SPARQLQueryResult'
+            'SPARQLQueryResult = rdflib_plugins.sparql.QueryResult:SPARQLQueryResult'
             ],
         'console_scripts': [
             'rdfpipe = rdflib_tools.RDFPipe:main',
