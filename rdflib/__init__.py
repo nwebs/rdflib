@@ -33,3 +33,4 @@ from rdflib.fileinputsource import FileInputSource
 from rdflib.urlinputsource import URLInputSource
 from rdflib.stringinputsource import StringInputSource
 
+from rdflib.namespace import RDF, RDFS

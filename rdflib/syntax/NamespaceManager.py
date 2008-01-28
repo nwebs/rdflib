@@ -1,11 +1,11 @@
 from __future__ import generators
 
-from rdflib import URIRef, Literal, RDFS, Variable
-from rdflib.syntax.xml_names import split_uri
-
 from urlparse import urljoin, urldefrag
 from urllib import pathname2url, url2pathname
 import os, sys, new
+
+from rdflib import URIRef, Literal, Variable
+from rdflib.syntax.xml_names import split_uri
 
 
 class NamespaceManager(object):

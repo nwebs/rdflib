@@ -29,14 +29,13 @@ from rdflib.store import Store
 from rdflib.syntax import serializer, serializers
 from rdflib.syntax import parsers
 from rdflib import query
-from rdflib.QueryResult import QueryResult
 
 entry_points = {
     'rdflib.plugins.store': Store,
     'rdflib.plugins.serializer': serializers.Serializer,
     'rdflib.plugins.parser': parsers.Parser,
     'rdflib.plugins.query_processor': query.Processor,
-    'rdflib.plugins.query_result': QueryResult
+    'rdflib.plugins.query_result': query.Result
     }
 
 _kinds = {}

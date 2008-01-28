@@ -151,7 +151,7 @@ from __future__ import generators
 
 #
 from rdflib import URIRef, BNode, Namespace, Literal, Variable
-from rdflib import RDF, RDFS
+from rdflib.namespace import RDF, RDFS
 
 from rdflib.node import Node
 
@@ -165,7 +165,6 @@ from rdflib.syntax.serializer import Serializer
 from rdflib.syntax.parsers import Parser
 from rdflib.syntax.NamespaceManager import NamespaceManager
 from rdflib import sparql
-from rdflib.QueryResult import QueryResult
 from rdflib.urlinputsource import URLInputSource
 from xml.sax.xmlreader import InputSource
 from xml.sax.saxutils import prepare_input_source
@@ -729,7 +728,7 @@ class Graph(Node):
         """
         assert processor == 'sparql',"SPARQL is currently the only supported RDF query language"
         p = plugin.get(processor, query.Processor)(self)
-        return plugin.get('SPARQLQueryResult',QueryResult)(p.query(strOrQuery,
+        return plugin.get('SPARQLQueryResult', query.Result)(p.query(strOrQuery,
                                                                    initBindings,
                                                                    initNs, 
                                                                    DEBUG, 
@@ -737,7 +736,7 @@ class Graph(Node):
                                                                    extensionFunctions))
 
         processor_plugin = plugin.get(processor, sparql.Processor)(self.store)
-        qresult_plugin = plugin.get('SPARQLQueryResult', QueryResult)
+        qresult_plugin = plugin.get('SPARQLQueryResult', query.Result)
 
         res = processor_plugin.query(strOrQuery, 
                                      initBindings, 

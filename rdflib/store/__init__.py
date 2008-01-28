@@ -17,7 +17,7 @@
 ## query expects a context-aware store to search the entire asserted universe (the conjunctive graph).
 ## A formula-aware store is expected not to include quoted statements when matching such a query.
 
-from rdflib import RDF
+from rdflib.namespace import RDF
 from rdflib import exceptions
 
 #Constants representing the state of a Store (returned by the open method)
