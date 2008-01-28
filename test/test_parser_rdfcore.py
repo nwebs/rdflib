@@ -167,7 +167,7 @@ results.add((system, RDFS.label, Literal("RDFLib")))
 results.add((system, RDFS.comment, Literal("")))
 
 
-def testParser():
+if __name__ == "__main__":
     manifest = Graph()
     manifest.parse("http://www.w3.org/2000/10/rdf-tests/rdfcore/Manifest.rdf")
     import sys, getopt
@@ -196,7 +196,3 @@ def testParser():
             unittest.main()
     finally:
         results.serialize("results.rdf")
-
-
-if __name__ == "__main__":
-    testParser()

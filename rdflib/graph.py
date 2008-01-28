@@ -973,7 +973,7 @@ class Seq(object):
         """
 
         _list = self._list = list()
-        LI_INDEX = RDF.RDFNS["_"]
+        LI_INDEX = RDF.RDFNS + "_"
         for (p, o) in graph.predicate_objects(subject):
             if p.startswith(LI_INDEX): #!= RDF.Seq: #
                 i = int(p.replace(LI_INDEX, ''))
