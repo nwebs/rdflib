@@ -157,6 +157,8 @@ from rdflib import plugin, exceptions
 
 from rdflib.store import Store
 
+from rdflib import query
+
 from rdflib.syntax.serializer import Serializer
 from rdflib.syntax.parsers import Parser
 from rdflib.syntax.NamespaceManager import NamespaceManager
@@ -729,7 +731,7 @@ class Graph(Node):
         processor - The kind of RDF query (must be 'sparql' until Versa is ported)
         """
         assert processor == 'sparql',"SPARQL is currently the only supported RDF query language"
-        p = plugin.get(processor, sparql.Processor)(self)
+        p = plugin.get(processor, query.Processor)(self)
         return plugin.get('SPARQLQueryResult',QueryResult)(p.query(strOrQuery,
                                                                    initBindings,
                                                                    initNs, 

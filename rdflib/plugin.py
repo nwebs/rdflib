@@ -1,8 +1,18 @@
+import warnings
+
 from rdflib.store import Store
 from rdflib.syntax import serializer, serializers
 from rdflib.syntax import parsers
-from rdflib import sparql
+from rdflib import query
 from rdflib.QueryResult import QueryResult
+
+entry_points = [
+    ('rdflib.plugins.store', Store),
+    ('rdflib.plugins.serializer', serializers.Serializer),
+    ('rdflib.plugins.parser', parsers.Parser),
+    ('rdflib.plugins.query_processor', query.Processor), 
+    ('rdflib.plugins.query_result', QueryResult)
+    ]
 
 _kinds = {}
 _adaptors = {}
@@ -35,13 +45,6 @@ def register_adaptor(adaptor, adaptee):
     _adaptors[adaptor] = adaptee
 
 
-import warnings
-entry_points = [
-    ('rdflib.plugins.store', Store),
-    ('rdflib.plugins.serializer', serializers.Serializer),
-    ('rdflib.plugins.parser', parsers.Parser),
-                ]
-    
 _entry_point_loaded = {}
 def register_from_entry_points(name=None, kind=None):
     if name is not None and kind is not None:
@@ -80,9 +83,4 @@ def register_from_entry_points(name=None, kind=None):
 register_adaptor(serializer.Serializer, serializers.Serializer)
 
 
-register("sparql", sparql.Processor,
-         'rdflib.sparql.bison.Processor', 'Processor')
-
-register("SPARQLQueryResult", QueryResult,
-         'rdflib.sparql.QueryResult', 'SPARQLQueryResult')
          

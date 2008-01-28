@@ -86,6 +86,12 @@ setup(
             'nt =     rdflib.syntax.parsers.NTParser:NTParser',
             'rdfa =     rdflib.syntax.parsers.RDFaParser:RDFaParser',
             ],
+        'rdflib.plugins.query_processor': [
+            'sparql = rdflib.sparql.bison.Processor:Processor',
+            ],
+        'rdflib.plugins.query_result': [
+            'SPARQLQueryResult = rdflib.sparql.QueryResult:SPARQLQueryResult'
+            ],
         'console_scripts': [
             'rdfpipe = rdflib_tools.RDFPipe:main',
         ],
