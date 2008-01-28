@@ -78,12 +78,12 @@ setup(
             'n3 =     rdflib.syntax.serializers.N3Serializer:N3Serializer',
             ],
         'rdflib.plugins.parser': [
-            'xml =     rdflib.syntax.parsers.RDFXMLParser:RDFXMLParser',
-            'trix =     rdflib.syntax.parsers.TriXParser:TriXParser',
-            'n3 =     rdflib.syntax.parsers.N3Parser:N3Parser',
-            'notation3 =     rdflib.syntax.parsers.N3Parser:N3Parser',
-            'nt =     rdflib.syntax.parsers.NTParser:NTParser',
-            'rdfa =     rdflib.syntax.parsers.RDFaParser:RDFaParser',
+            'xml =     rdflib_plugins.parsers.RDFXMLParser:RDFXMLParser',
+            'trix =     rdflib_plugins.parsers.TriXParser:TriXParser',
+            'n3 =     rdflib_plugins.parsers.N3Parser:N3Parser',
+            'notation3 =     rdflib_plugins.parsers.N3Parser:N3Parser',
+            'nt =     rdflib_plugins.parsers.NTParser:NTParser',
+            'rdfa =     rdflib_plugins.parsers.RDFaParser:RDFaParser',
             ],
         'rdflib.plugins.query_processor': [
             'sparql = rdflib.sparql.bison.Processor:Processor',
