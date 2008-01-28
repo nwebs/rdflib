@@ -1,6 +1,6 @@
 #$Id: NTSerializer.py,v 1.6 2003/10/29 15:25:24 kendall Exp $
 
-from rdflib.syntax.serializers import Serializer
+from rdflib.syntax.serializer import Serializer
 
 class NTSerializer(Serializer):
 

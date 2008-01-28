@@ -1,9 +1,10 @@
+from rdflib.syntax.serializer import Serializer
+
 from rdflib import RDF
 
 from rdflib import URIRef, Literal, BNode
 from rdflib.util import first, uniq, more_than
 from rdflib.collection import Collection
-from rdflib.syntax.serializers import Serializer
 from rdflib.syntax.serializers.XMLWriter import XMLWriter
 
 XMLLANG = "http://www.w3.org/XML/1998/namespacelang"

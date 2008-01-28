@@ -1,6 +1,6 @@
 from __future__ import generators
 
-from rdflib.syntax.serializers import Serializer
+from rdflib.syntax.serializer import Serializer
 
 from rdflib.uriref import URIRef
 from rdflib.literal import Literal

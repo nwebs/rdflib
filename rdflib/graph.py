@@ -146,7 +146,24 @@ Parameterized SPARQL Queries
 from __future__ import generators
 
 
-#
+import random
+import warnings
+import tempfile
+import shutil
+import os
+from urlparse import urlparse
+
+try:
+    from hashlib import md5
+except ImportError:
+    from md5 import md5    
+
+try:
+    from cStringIO import StringIO
+except ImportError:
+    from StringIO import StringIO
+
+
 from rdflib import URIRef, BNode, Namespace, Literal, Variable
 from rdflib.namespace import RDF, RDFS
 
@@ -166,13 +183,6 @@ from rdflib.urlinputsource import URLInputSource
 from xml.sax.xmlreader import InputSource
 from xml.sax.saxutils import prepare_input_source
 
-import random
-import warnings
-
-try:
-    from hashlib import md5
-except ImportError:
-    from md5 import md5    
 
 def describe(terms,bindings,graph):
     """ 
@@ -673,7 +683,28 @@ class Graph(Node):
         string. Format defaults to xml (AKA rdf/xml).
         """
         serializer = plugin.get(format, Serializer)(self)
-        return serializer.serialize(destination, base=base, encoding=encoding, **args)
+        if destination is None:
+            stream = StringIO()
+            serializer.serialize(stream, base=base, encoding=encoding)
+            return stream.getvalue()
+        if hasattr(destination, "write"):
+            stream = destination
+            serializer.serialize(stream, base=base, encoding=encoding)
+        else:
+            location = destination
+            scheme, netloc, path, params, query, fragment = urlparse(location)
+            if netloc!="":
+                print "WARNING: not saving as location is not a local file reference"
+                return
+            name = tempfile.mktemp()
+            stream = open(name, 'wb')
+            serializer.serialize(stream, base=base, encoding=encoding, **args)
+            stream.close()
+            if hasattr(shutil,"move"):
+                shutil.move(name, path)
+            else:
+                shutil.copy(name, path)
+                os.remove(name)
 
     def prepare_input_source(self, source, publicID=None):
         if isinstance(source, InputSource):

@@ -26,20 +26,20 @@ For more information see:
 import warnings
 
 from rdflib.store import Store
-from rdflib.syntax import serializer, serializers
+from rdflib.syntax import serializer
 from rdflib.syntax import parsers
 from rdflib import query
 
 entry_points = {
     'rdflib.plugins.store': Store,
-    'rdflib.plugins.serializer': serializers.Serializer,
+    'rdflib.plugins.serializer': serializer.Serializer,
     'rdflib.plugins.parser': parsers.Parser,
     'rdflib.plugins.query_processor': query.Processor,
     'rdflib.plugins.query_result': query.Result
     }
 
 _kinds = {}
-_adaptors = {}
+
 
 def register(name, kind, module_path, class_name):
     _module_info = _kinds.get(kind, None)
@@ -55,21 +55,7 @@ def get(name, kind):
         module = __import__(module_path, globals(), locals(), True)
         return getattr(module, class_name)
     else:
-        Adaptor = kind # TODO: look up of adaptor, for now just use kind
-        try:
-            Adaptee = get(name, _adaptors[kind])
-        except Exception, e:
-            raise Exception("could not get plugin for %s, %s: %s" % (name, kind, e))
-        def const(*args, **keywords):
-            return Adaptor(Adaptee(*args, **keywords))
-        return const
-
-def register_adaptor(adaptor, adaptee):
-    _adaptors[adaptor] = adaptee
-
-# TODO: would be nice to get rid of the following bit of complexity,
-# the adaptor bit.
-register_adaptor(serializer.Serializer, serializers.Serializer) 
+        raise Exception("could not get plugin for %s, %s: %s" % (name, kind, e))
 
 
 _entry_point_loaded = {}
