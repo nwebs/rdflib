@@ -1,3 +1,7 @@
+"""
+This module defines a URIRef class.
+"""
+
 from sys import version_info
 
 try:
@@ -19,6 +23,15 @@ from rdflib.compat import rsplit
 class URIRef(Identifier):
     """
     RDF URI Reference: http://www.w3.org/TR/rdf-concepts/#section-Graph-URIref
+
+    >>> uri = URIRef("http://example.org/foo#bar")
+    >>> uri
+    rdflib.URIRef('http://example.org/foo#bar')
+
+    >>> uri = URIRef("baz", base="http://example.org/")
+    >>> uri.n3()
+    u'<http://example.org/baz>'
+
     """
 
     __slots__ = ()
@@ -39,15 +52,32 @@ class URIRef(Identifier):
         return rt
 
     def n3(self):
+        """
+        Return the URIRef in n3 notation.
+        """
         return "<%s>" % self
 
     def concrete(self):
+        """
+        Return the related concrete URIRef if this is a abstract
+        URIRef. Else return the already concrete URIRef.
+
+        NOTE: This is just one pattern for mapping between related
+        concrete and abstract URIRefs.
+        """
         if "#" in self:
             return URIRef("/".join(rsplit(self, "#", 1)))
         else:
             return self
 
     def abstract(self):
+        """
+        Return the related abstract URIRef if this is a concrete
+        URIRef. Else return the already abstract URIRef.
+
+        NOTE: This is just one pattern for mapping between related
+        concrete and abstract URIRefs.
+        """
         if "#" not in self:
             scheme, netloc, path, params, query, fragment = urlparse(self)
             if path:
@@ -62,6 +92,9 @@ class URIRef(Identifier):
 
 
     def defrag(self):
+        """
+        Defragment the URIRef and return the resulting URIRef.
+        """
         if "#" in self:
             url, frag = urldefrag(self)
             return URIRef(url)

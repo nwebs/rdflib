@@ -1,3 +1,7 @@
+"""
+
+"""
+
 from xml.sax.xmlreader import InputSource
 
 class FileInputSource(InputSource, object):

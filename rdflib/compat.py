@@ -1,3 +1,9 @@
+"""
+This module implements backward compatible versions of python
+funcionality used by rdflib.
+
+"""
+
 import sys
 
 if sys.version_info < (2, 4, 1, 'alpha', 1):

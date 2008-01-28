@@ -1,3 +1,7 @@
+"""
+This module defines a TextIndex class.
+"""
+
 try:
     from hashlib import md5
 except ImportError:

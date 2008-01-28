@@ -1,3 +1,9 @@
+"""
+This module defines some utilities that may be useful when writing
+store implementations.
+
+"""
+
 from rdflib import *
 from rdflib.graph import QuotedGraph, Graph, ConjunctiveGraph
 

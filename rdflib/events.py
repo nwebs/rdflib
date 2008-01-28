@@ -1,5 +1,4 @@
-
-__doc__ = """
+"""
 Dirt Simple Events
 
 A Dispatcher (or a subclass of Dispatcher) stores event handlers that
@@ -82,9 +81,3 @@ class Dispatcher(object):
             for l in lst:
                 l(event)
 
-def test():
-    import doctest
-    doctest.testmod()
-
-if __name__ == '__main__':
-    test()

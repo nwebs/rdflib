@@ -1,6 +1,16 @@
-# TODO: where can we move _unique_id and _serial_number_generator?
-from string import ascii_letters
-from random import choice
+"""
+This module defines a BNode class.
+
+Applications should typically create a BNode instance without
+specifying a specific value. Support for specifying a specific value
+is primarily for store implementations to be able to create BNodes
+with a specific value (AKA label).
+
+    >>> b = BNode()
+    >>> b.__class__
+    <class 'rdflib.bnode.BNode'>
+
+"""
 
 try:
     from hashlib import md5
@@ -8,7 +18,12 @@ except ImportError:
     from md5 import md5    
 
 def _unique_id():
-    """Create a (hopefully) unique prefix"""
+    """
+    Create a (hopefully) unique prefix
+    """
+    from string import ascii_letters
+    from random import choice
+
     id = ""
     for i in xrange(0,8):
         id += choice(ascii_letters)

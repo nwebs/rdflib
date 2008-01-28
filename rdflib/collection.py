@@ -1,3 +1,10 @@
+"""
+This module defines a Collection class.
+
+
+
+"""
+
 from rdflib import RDF, BNode, Literal
 from rdflib.graph import Graph
 
@@ -217,44 +224,4 @@ class Collection(object):
             graph.remove((container, RDF.first, None))
             graph.remove((container, RDF.rest, None))
             container = rest
-def test():
-    import doctest
-    doctest.testmod()
-
-if __name__=="__main__":
-    test()
-
-    g = Graph()
-
-    c = Collection(g, BNode())
-
-    assert len(c)==0
-
-    c = Collection(g, BNode(), [Literal("1"), Literal("2"), Literal("3"), Literal("4")])
-
-    assert len(c)==4
-
-    assert c[1]==Literal("2"), c[1]
-
-    del c[1]
-
-    assert list(c)==[Literal("1"), Literal("3"), Literal("4")], list(c)
-
-    try:
-        del c[500]
-    except IndexError, i:
-        pass
-
-    c.append(Literal("5"))
-
-    print list(c)
-
-    for i in c:
-        print i
-
-    del c[3]
-
-    c.clear()
-
-    assert len(c)==0
 

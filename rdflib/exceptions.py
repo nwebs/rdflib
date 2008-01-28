@@ -1,3 +1,7 @@
+"""
+Various exceptions used in rdflib.
+
+"""
 
 class Error(Exception):
     """Base class for rdflib exceptions."""
