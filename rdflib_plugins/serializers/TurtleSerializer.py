@@ -6,10 +6,11 @@ from rdflib.literal import Literal
 from rdflib.uriref import URIRef
 from rdflib.syntax.xml_names import split_uri 
 
-from rdflib.syntax.serializers.RecursiveSerializer import RecursiveSerializer
 from rdflib.exceptions import Error
 
 from rdflib import RDF, RDFS
+
+from rdflib_plugins.serializers.RecursiveSerializer import RecursiveSerializer
 
 SUBJECT = 0
 VERB = 1

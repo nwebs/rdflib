@@ -55,7 +55,7 @@ def get(name, kind):
         module = __import__(module_path, globals(), locals(), True)
         return getattr(module, class_name)
     else:
-        raise Exception("could not get plugin for %s, %s: %s" % (name, kind, e))
+        raise Exception("could not get plugin for %s, %s" % (name, kind))
 
 
 _entry_point_loaded = {}
