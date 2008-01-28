@@ -711,9 +711,6 @@ class Graph(Node):
         parser.parse(source, self, **args)
         return self
 
-    def load(self, source, publicID=None, format="xml"):
-        self.parse(source, publicID, format)
-
     def query(self, strOrQuery, initBindings={}, initNs={}, DEBUG=False,
               dataSetBase=None,
               processor="sparql",

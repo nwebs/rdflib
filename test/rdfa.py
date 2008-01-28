@@ -73,7 +73,7 @@ class RDFaTestStub(unittest.TestCase):
         self.failIf(not os.path.isfile(resultsf), "missing expected results file.")
 
         store1 = RGraph()
-        store1.load(resultsf, publicID=self.pubId, format="n3")
+        store1.parse(resultsf, publicID=self.pubId, format="n3")
         pcontents = store1.serialize(format='nt')
         pg = Graph()
         for a, b, c in store1:
@@ -81,7 +81,7 @@ class RDFaTestStub(unittest.TestCase):
             #print tuple(map(self.nodeToString, (a,b,c)))
 
         store2 = RGraph()
-        store2.load(testfile, publicID=self.pubId, format="rdfa")
+        store2.parse(testfile, publicID=self.pubId, format="rdfa")
         qcontents = store2.serialize(format='nt')
         qg = Graph()
         for a, b, c in store2:

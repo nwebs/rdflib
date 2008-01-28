@@ -52,7 +52,7 @@ def _testPositive(uri, manifest):
         format = "nt"
     else:
         format = "xml"
-    expected.load(outDoc, format=format)
+    expected.parse(outDoc, format=format)
     store = TestStore(expected)
     if inDoc[-3:]==".nt":
         format = "nt"
@@ -60,7 +60,7 @@ def _testPositive(uri, manifest):
         format = "xml"
 
     try:
-        store.load(inDoc, format=format)
+        store.parse(inDoc, format=format)
     except ParserError, pe:
         write("Failed '")
         write(inDoc)
@@ -99,7 +99,7 @@ def _testNegative(uri, manifest):
             format = "nt"
         else:
             format = "xml"
-        store.load(inDoc, format=format)
+        store.parse(inDoc, format=format)
     except ParserError, pe:
         results.add((test, RDF.type, RESULT["PassingRun"]))
         #pass
@@ -117,7 +117,7 @@ class ParserTestCase(unittest.TestCase):
     def setUp(self):
         self.manifest = manifest = Graph(store=self.store)
         manifest.open(self.path)
-        manifest.load("http://www.w3.org/2000/10/rdf-tests/rdfcore/Manifest.rdf")
+        manifest.parse("http://www.w3.org/2000/10/rdf-tests/rdfcore/Manifest.rdf")
 
     def tearDown(self):
         self.manifest.close()
@@ -169,7 +169,7 @@ results.add((system, RDFS.comment, Literal("")))
 
 if __name__ == "__main__":
     manifest = Graph()
-    manifest.load("http://www.w3.org/2000/10/rdf-tests/rdfcore/Manifest.rdf")
+    manifest.parse("http://www.w3.org/2000/10/rdf-tests/rdfcore/Manifest.rdf")
     import sys, getopt
     try:
         optlist, args = getopt.getopt(sys.argv[1:], 'h:', ["help"])

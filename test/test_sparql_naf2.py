@@ -1,4 +1,4 @@
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
 from rdflib import ConjunctiveGraph, URIRef, Literal, RDFS
 from StringIO import StringIO
 import unittest
@@ -28,7 +28,7 @@ WHERE {
 class TestSparqlOPT_FILTER2(unittest.TestCase):
     def setUp(self):
         self.graph = ConjunctiveGraph()
-        self.graph.load(StringIO(testContent), format='n3')
+        self.graph.parse(StringIO(testContent), format='n3')
     def test_OPT_FILTER(self):
         results = self.graph.query(QUERY,
                                    DEBUG=False).serialize(format='python')

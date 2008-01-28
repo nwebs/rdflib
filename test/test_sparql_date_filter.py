@@ -1,4 +1,4 @@
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
 from rdflib import ConjunctiveGraph, URIRef, Literal, RDFS
 from rdflib.sparql.Algebra import RenderSPARQLAlgebra
 from rdflib.sparql.bison import Parse
@@ -58,7 +58,7 @@ ANSWER1 = URIRef('http://del.icio.us/rss/chimezie/paper')
 class DateFilterTest(unittest.TestCase):
     def setUp(self):
         self.graph = ConjunctiveGraph()
-        self.graph.load(StringIO(testContent), format='n3')
+        self.graph.parse(StringIO(testContent), format='n3')
     def test_DATE_FILTER1(self):
         for query in [QUERY1,QUERY2,QUERY3]:
             print query

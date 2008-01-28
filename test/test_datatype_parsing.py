@@ -1,4 +1,4 @@
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
 import unittest
 from pprint import pprint
 from rdflib import ConjunctiveGraph, URIRef, Literal, RDFS, Namespace
@@ -20,7 +20,7 @@ double1 = Literal('1',datatype=_XSD_NS.double)
 class TestSparqlOPT_FILTER(unittest.TestCase):
     def setUp(self):
         self.graph = ConjunctiveGraph()
-        self.graph.load(StringIO(testContent), format='n3')
+        self.graph.parse(StringIO(testContent), format='n3')
     def test_OPT_FILTER(self):
         xd3Objs = [o for o in self.graph.objects(subject=exNS.xd3,predicate=exNS.p)]
         self.failUnless(xd3Objs[0].datatype == _XSD_NS.double,

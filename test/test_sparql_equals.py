@@ -1,4 +1,4 @@
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
 from rdflib import ConjunctiveGraph, URIRef
 from StringIO import StringIO
 import unittest
@@ -17,7 +17,7 @@ class TestSparqlEquals(unittest.TestCase):
             <http://example.org/doc/3> rdfs:label "Document 3"@en .
         """ % self.PREFIXES
         self.graph = graph = ConjunctiveGraph()
-        self.graph.load(StringIO(testContent), format='n3')
+        self.graph.parse(StringIO(testContent), format='n3')
 
     def test_uri_equals(self):
         uri = URIRef("http://example.org/doc/1")

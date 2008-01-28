@@ -11,7 +11,7 @@ class SerializerTestBase(object):
 
     def setup(self):
         graph = ConjunctiveGraph()
-        graph.load(StringIO(self.testContent), format=self.testContentFormat)
+        graph.parse(StringIO(self.testContent), format=self.testContentFormat)
         self.sourceGraph = graph
 
     def test_serialize_and_reparse(self):
@@ -59,7 +59,7 @@ def serialize_and_load(sourceGraph, makeSerializer):
     stream = serialize(sourceGraph, makeSerializer, False)
     stream.seek(0)
     reparsedGraph = ConjunctiveGraph()
-    reparsedGraph.load(stream)
+    reparsedGraph.parse(stream)
     return reparsedGraph
 
 

@@ -1,4 +1,4 @@
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
 from rdflib import ConjunctiveGraph, URIRef, Literal
 from StringIO import StringIO
 
@@ -11,7 +11,7 @@ testContent = """
     <http://example.org/doc/3> rdfs:label "Document 3"@en, "Dokument 3"@sv .
 """
 graph = ConjunctiveGraph()
-graph.load(StringIO(testContent), format='n3')
+graph.parse(StringIO(testContent), format='n3')
 
 doc1 = URIRef("http://example.org/doc/1")
 

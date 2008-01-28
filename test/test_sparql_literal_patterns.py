@@ -1,4 +1,4 @@
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
 #=======================================================================
 from rdflib import ConjunctiveGraph, URIRef, Literal
 from StringIO import StringIO
@@ -20,7 +20,7 @@ testRdf = """
         rdfs:label "Thing"@en, "Sak"@sv .
 """
 graph = ConjunctiveGraph()
-graph.load(StringIO(testRdf), format='n3')
+graph.parse(StringIO(testRdf), format='n3')
 
 PROLOGUE = """
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
