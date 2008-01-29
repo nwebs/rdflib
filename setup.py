@@ -44,53 +44,11 @@ setup(
 
     packages = find_packages(),
 
-    ext_modules = [
-        Extension(
-            name='rdflib_plugins.sparql.bison.SPARQLParserc',
-            sources=['src/bison/SPARQLParser.c'],
-            ),
-        ],
-
-    tests_require = ["nose>=0.9.2"],
+    tests_require = ["nose>=0.9.2", "rdflib_plugins"],
 
     test_suite = 'nose.collector',
 
     entry_points = {        
-        'rdflib.plugins.store': [
-            'IOMemory = rdflib_plugins.store.IOMemory:IOMemory',
-            'Memory = rdflib_plugins.store.Memory:Memory',
-            'Sleepycat = rdflib_plugins.store.Sleepycat:Sleepycat',
-            'BerkeleyDB = rdflib_plugins.store.BerkeleyDB:BerkeleyDB', 
-            'BDBOptimized = rdflib_plugins.store.BDBOptimized:BDBOptimized',
-            'MySQL = rdflib_plugins.store.MySQL:MySQL',
-            'SQLite = rdflib_plugins.store.SQLite:SQLite',
-            'ZODB = rdflib_plugins.store.ZODB:ZODB',
-            'sqlobject = rdflib_plugins.store._sqlobject:SQLObject',
-            'Redland = rdflib_plugins.store.Redland:Redland',
-            ],
-        'rdflib.plugins.serializer': [
-            'rdf =     rdflib_plugins.serializers.XMLSerializer:XMLSerializer',
-            'xml =     rdflib_plugins.serializers.XMLSerializer:XMLSerializer',
-            'rdf/xml =     rdflib_plugins.serializers.XMLSerializer:XMLSerializer',
-            'pretty-xml =     rdflib_plugins.serializers.PrettyXMLSerializer:PrettyXMLSerializer',
-            'nt =     rdflib_plugins.serializers.NTSerializer:NTSerializer',
-            'turtle =     rdflib_plugins.serializers.TurtleSerializer:TurtleSerializer',
-            'n3 =     rdflib_plugins.serializers.N3Serializer:N3Serializer',
-            ],
-        'rdflib.plugins.parser': [
-            'xml =     rdflib_plugins.parsers.RDFXMLParser:RDFXMLParser',
-            'trix =     rdflib_plugins.parsers.TriXParser:TriXParser',
-            'n3 =     rdflib_plugins.parsers.N3Parser:N3Parser',
-            'notation3 =     rdflib_plugins.parsers.N3Parser:N3Parser',
-            'nt =     rdflib_plugins.parsers.NTParser:NTParser',
-            'rdfa =     rdflib_plugins.parsers.RDFaParser:RDFaParser',
-            ],
-        'rdflib.plugins.query_processor': [
-            'sparql = rdflib_plugins.sparql.bison.Processor:Processor',
-            ],
-        'rdflib.plugins.query_result': [
-            'SPARQLQueryResult = rdflib_plugins.sparql.QueryResult:SPARQLQueryResult'
-            ],
         'console_scripts': [
             'rdfpipe = rdflib_tools.RDFPipe:main',
         ],
