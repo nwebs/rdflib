@@ -244,12 +244,15 @@ from cStringIO import StringIO
 class NodePickler(object):
     """
 
+    >>> from rdflib.store import NodePickler
+    >>> from rdflib.term import Literal
     >>> np = NodePickler()
-    >>> a = Literal(u'''A test with a \\n (backslash n), "\u00a9" , and newline \n and a second line.
-    ... ''')
+    >>> a = Literal(u'''A test with a \\n (backslash n), "\u00a9" , and newline
+    ... and a second line.''')
     >>> b = np.loads(np.dumps(a))
     >>> a==b
     True
+
     """
 
     def __init__(self):

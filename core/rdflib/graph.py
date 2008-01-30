@@ -777,17 +777,6 @@ class Graph(Term):
         >>> len(g)
         2
 
-        >>> g = Graph()
-        >>> result = g.parse(source=file_name)
-        >>> len(g)
-        2
-
-        >>> g = Graph()
-        >>> result = g.parse(source=file(file_name, "r"))
-        >>> len(g)
-        2
-        
-
         """
 
         source = create_input_source(source=source, publicID=publicID, location=location, file=file, data=data)

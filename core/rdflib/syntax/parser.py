@@ -85,8 +85,15 @@ def create_input_source(source=None, publicID=None,
             input_source = source
         else:
             if hasattr(source, "read") and not isinstance(source, Namespace):
-                warnings.warn("Use g.parse(file=my_file) instead of using source argument. ",
-                              DeprecationWarning, stacklevel=2)
+
+                # TODO: ah... create_input_source is not always called
+                # directly... so we want stacklevel of 2 or 3. So not
+                # sure how we can make this useful. Also, does not
+                # seem to give useful information when being called
+                # from doctests.
+
+                # warnings.warn("Use g.parse(file=my_file) instead of using source argument. ",
+                #              DeprecationWarning, stacklevel=3)
 
                 # we need to make sure it's not an instance of Namespace since
                 # Namespace instances have a read attr
