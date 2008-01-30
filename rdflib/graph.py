@@ -1,7 +1,17 @@
 """
 A Graph and ConjunctiveGraph interface for working with an RDF Graph.
 
+    >>> from rdflib.graph import Graph, ConjunctiveGraph
+    >>> from rdflib.graph import ReadOnlyGraphAggregate
+
+    >>> from rdflib.term import URIRef, BNode, Literal
+    >>> from rdflib.namespace import RDF, RDFS
+
+    >>> from rdflib import plugin
+    >>> from rdflib.store import Store
+
 Instanciating Graphs with default store (Memory) and default identifier (a BNode):
+
 
     >>> g=Graph()
     >>> g.store.__class__.__name__
@@ -27,6 +37,7 @@ Instanciating Graphs with Sleepycat store and an identifier - <http://rdflib.net
 
 Creating a ConjunctiveGraph - The top level container for all named Graphs in a 'database':
 
+    >>> from rdflib.graph import ConjunctiveGraph
     >>> g=ConjunctiveGraph()
     >>> str(g.default_context)
     "[a rdfg:Graph;rdflib:storage [a rdflib:Store;rdfs:label 'IOMemory']]."
@@ -101,18 +112,20 @@ Parsing N3 from StringIO
 
     >>> from cStringIO import StringIO
     >>> g2=ConjunctiveGraph()
-    >>> src = \"\"\"
+    >>> src = '''
     ... @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
     ... @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
     ... [ a rdf:Statement ;
     ...   rdf:subject <http://rdflib.net/store#ConjunctiveGraph>;
     ...   rdf:predicate rdfs:label;
-    ...   rdf:object "Conjunctive Graph" ] \"\"\"
+    ...   rdf:object "Conjunctive Graph" ] '''
     >>> g2=g2.parse(StringIO(src),format='n3')
     >>> print len(g2)
     4
 
 Using Namespace class:
+
+    >>> from rdflib.namespace import Namespace
 
     >>> RDFLib = Namespace('http://rdflib.net')
     >>> RDFLib.ConjunctiveGraph
@@ -153,9 +166,6 @@ import shutil
 import os
 from urlparse import urlparse
 
-from xml.sax.xmlreader import InputSource
-from xml.sax.saxutils import prepare_input_source
-
 try:
     from hashlib import md5
 except ImportError:
@@ -182,7 +192,7 @@ from rdflib.syntax.serializer import Serializer
 from rdflib.syntax.parsers import Parser
 from rdflib.syntax.NamespaceManager import NamespaceManager
 
-from rdflib.urlinputsource import URLInputSource
+from rdflib.inputsource import create_input_source
 
 
 # def describe(terms,bindings,graph):
@@ -707,35 +717,82 @@ class Graph(Term):
                 shutil.copy(name, path)
                 os.remove(name)
 
-    def prepare_input_source(self, source, publicID=None):
-        if isinstance(source, InputSource):
-            input_source = source
-        else:
-            if hasattr(source, "read") and not isinstance(source, Namespace):
-                # we need to make sure it's not an instance of Namespace since
-                # Namespace instances have a read attr
-                input_source = prepare_input_source(source)
-            else:
-                location = self.absolutize(source)
-                input_source = URLInputSource(location)
-                publicID = publicID or location
-        if publicID:
-            input_source.setPublicId(publicID)
-        id = input_source.getPublicId()
-        if id is None:
-            input_source.setPublicId("")
-        return input_source
+    def parse(self, source=None, publicID=None, format="xml", 
+              location=None, file=None, data=None, **args):
+        """ 
+        Parse source adding the resulting triples to the Graph.
 
-    def parse(self, source, publicID=None, format="xml", **args):
-        """ Parse source into Graph
+        The source is specified using one of source, location, file or
+        data.
 
-        If Graph is context-aware it'll get loaded into it's own context
-        (sub graph). Format defaults to xml (AKA rdf/xml). The publicID
-        argument is for specifying the logical URI for the case that it's
-        different from the physical source URI. Returns the context into which
-        the source was parsed.
+        :Parameters:
+
+        - `source`: An InputSource, file-like object, or string. In
+          the case of a string the string is the location of the
+          source.
+        - `location`: A string indicating the relative or absolute URL
+          of the source. Graph's absolutize method is used if a
+          relative location is specified.
+        - `file`: A file-like object.
+        - `data`: A string containing the data to be parsed.
+        - `format`: Used if format can not be determined from
+          source. Defaults to rdf/xml.
+        - `publicID`: the logical URI to use as the document base. If
+          None specified the document location is used (at least in
+          the case where there is a document location).
+
+        :Returns:
+
+        self, the graph instance.
+
+        :Examples:
+
+        >>> my_data = '''
+        ... <rdf:RDF 
+        ...   xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'
+        ...   xmlns:rdfs='http://www.w3.org/2000/01/rdf-schema#'
+        ... >
+        ...   <rdf:Description> 
+        ...     <rdfs:label>Example</rdfs:label>
+        ...     <rdfs:comment>This is really just an example.</rdfs:comment>
+        ...   </rdf:Description> 
+        ... </rdf:RDF>
+        ... '''
+        >>> import tempfile
+        >>> file_name = tempfile.mktemp()
+        >>> f = file(file_name, "w")
+        >>> f.write(my_data)
+        >>> f.close()
+
+        >>> g = Graph()
+        >>> result = g.parse(data=my_data)
+        >>> len(g)
+        2
+
+        >>> g = Graph()
+        >>> result = g.parse(location=file_name)
+        >>> len(g)
+        2
+
+        >>> g = Graph()
+        >>> result = g.parse(file=file(file_name, "r"))
+        >>> len(g)
+        2
+
+        >>> g = Graph()
+        >>> result = g.parse(source=file_name)
+        >>> len(g)
+        2
+
+        >>> g = Graph()
+        >>> result = g.parse(source=file(file_name, "r"))
+        >>> len(g)
+        2
+        
+
         """
-        source = self.prepare_input_source(source, publicID)
+
+        source = create_input_source(source=source, publicID=publicID, location=location, file=file, data=data)
         parser = plugin.get(format, Parser)()
         parser.parse(source, self, **args)
         return self
@@ -906,15 +963,22 @@ class ConjunctiveGraph(Graph):
             context_id = "#context"
         return URIRef(context_id, base=uri)
 
-    def parse(self, source, publicID=None, format="xml", **args):
-        """Parse source into Graph into it's own context (sub graph)
-
-        Format defaults to xml (AKA rdf/xml). The publicID argument is for
-        specifying the logical URI for the case that it's different from the
-        physical source URI. Returns the context into which the source was
-        parsed. In the case of n3 it returns the root context.
+    def parse(self, source, publicID=None, format="xml", 
+              location=None, file=None, data=None, **args):
         """
-        source = self.prepare_input_source(source, publicID)
+        Parse source adding the resulting triples to it's own context
+        (sub graph of this graph).
+
+        See `rdflib.graph.Graph.parse` for documentation on arguments.a
+
+        :Returns:
+
+        The graph into which the source was parsed. In the case of n3
+        it returns the root context.
+        """
+
+        source = create_input_source(source=source, publicID=publicID, location=location, file=file, data=data)
+
         id = self.context_id(self.absolutize(source.getPublicId()))
         context = Graph(store=self.store, identifier=id)
         context.remove((None, None, None))
