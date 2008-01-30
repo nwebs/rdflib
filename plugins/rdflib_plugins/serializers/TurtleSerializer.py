@@ -1,14 +1,14 @@
 import urlparse
 from xml.sax.saxutils import escape, quoteattr
 
-from rdflib.bnode import BNode
-from rdflib.literal import Literal
-from rdflib.uriref import URIRef
+from rdflib.term import BNode
+from rdflib.term import Literal
+from rdflib.term import URIRef
 from rdflib.syntax.xml_names import split_uri 
 
 from rdflib.exceptions import Error
 
-from rdflib import RDF, RDFS
+from rdflib.namespace import RDF, RDFS
 
 from rdflib_plugins.serializers.RecursiveSerializer import RecursiveSerializer
 

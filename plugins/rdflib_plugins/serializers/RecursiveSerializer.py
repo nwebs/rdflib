@@ -1,10 +1,10 @@
-from rdflib.bnode import BNode
-from rdflib.literal import Literal
-from rdflib.uriref import URIRef
+from rdflib.term import BNode
+from rdflib.term import Literal
+from rdflib.term import URIRef
 
 from rdflib.syntax.serializer import Serializer
 
-from rdflib import RDF, RDFS
+from rdflib.namespace import RDF, RDFS
 
 
 class RecursiveSerializer(Serializer):

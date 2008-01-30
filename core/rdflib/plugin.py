@@ -25,10 +25,13 @@ For more information see:
 
 import warnings
 
+from pkg_resources import iter_entry_points
+
 from rdflib.store import Store
 from rdflib.syntax import serializer
 from rdflib.syntax import parser
 from rdflib import query
+from rdflib.exceptions import Error
 
 entry_points = {
     'rdflib.plugins.store': Store,
@@ -38,53 +41,73 @@ entry_points = {
     'rdflib.plugins.query_result': query.Result
     }
 
-_kinds = {}
+_plugins = dict()
+
+
+class PluginException(Error):
+    pass
+
+
+class Plugin(object):
+
+    def __init__(self, module_path, class_name):
+        self.module_path = module_path
+        self.class_name = class_name
+        self._class = None
+
+    def getClass(self):
+        if self._class is None:
+            module = __import__(self.module_path, globals(), locals(), True)
+            self._class = getattr(module, self.class_name)
+        return self._class
+
+
+class PKGPlugin(Plugin):
+
+    def __init__(self, ep):
+        self.ep = ep
+        self._class = None
+
+    def getClass(self):
+        if self._class is None:
+            self._class = self.ep.load()
+        return self._class
 
 
 def register(name, kind, module_path, class_name):
-    _module_info = _kinds.get(kind, None)
-    if _module_info is None:
-        _module_info = _kinds[kind] = {}
-    _module_info[name] = (module_path, class_name)
+    """
+    Register the plugin for (name, kind). The module_path and
+    class_name should be the path to a plugin class.
+    """
+    p = Plugin(name, kind, module_path, class_name)
+    _plugins[(name, kind)] = p
+
 
 def get(name, kind):
-    _register_from_entry_points(name, kind)
-    _module_info = _kinds.get(kind)
-    if _module_info and name in _module_info:
-        module_path, class_name = _module_info[name]
-        module = __import__(module_path, globals(), locals(), True)
-        return getattr(module, class_name)
-    else:
-        raise Exception("could not get plugin for %s, %s" % (name, kind))
+    """
+    Return the class for the specified (name, kind). Raises a
+    PluginException if unable to do so.
+    """
+    try:
+        p = _plugins[(name, kind)]
+    except KeyError, e:
+        raise PluginException("No plugin registered for (%s, %s)" % (name, kind))        
+    return p.getClass()
 
 
-_entry_point_loaded = {}
-def _register_from_entry_points(name=None, kind=None):
-    if name is not None and kind is not None:
-        if (name, kind) in _entry_point_loaded:
-            return
-    from pkg_resources import iter_entry_points
-    for entry_point, entry_point_kind in entry_points.iteritems():
-        for ep in iter_entry_points(entry_point):
-            # only load if name and kind match. None matches all.
-            if not (name is None or name==ep.name):
-                continue
-            if not (kind is None or kind==entry_point_kind):
-                continue
-            if (ep.name, kind) in _entry_point_loaded:
-                continue
+# add the plugins specified via pkg_resources' EntryPoints.
+for entry_point, kind in entry_points.iteritems():
+    for ep in iter_entry_points(entry_point):
+        _plugins[(ep.name, kind)] = PKGPlugin(ep)
 
-            _entry_point_loaded[(ep.name, kind)] = True
-            try:
-                plugcls = ep.load()
-            except KeyboardInterrupt:
-                raise
-            except Exception, e:
-                # never want a plugin load to kill the test run
-                # but we can't log here because the logger is not yet
-                # configured
-                warnings.warn("Unable to load plugin %s: %s" % (ep, e),
-                              RuntimeWarning)
-                continue
-            register(ep.name, kind, plugcls.__module__, plugcls.__name__)
+
+# TODO: plugins currently don't know there name and kind.
+#
+# def plugins(name=None, kind=None):
+#     """
+#     A generator of the plugins.
+#     """
+#     for p in _plugins.values():
+#         if (name is None or name==p.name) and (kind is None or kind==p.kind):
+#             yield p
 
