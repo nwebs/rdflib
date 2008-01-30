@@ -27,13 +27,13 @@ import warnings
 
 from rdflib.store import Store
 from rdflib.syntax import serializer
-from rdflib.syntax import parsers
+from rdflib.syntax import parser
 from rdflib import query
 
 entry_points = {
     'rdflib.plugins.store': Store,
     'rdflib.plugins.serializer': serializer.Serializer,
-    'rdflib.plugins.parser': parsers.Parser,
+    'rdflib.plugins.parser': parser.Parser,
     'rdflib.plugins.query_processor': query.Processor,
     'rdflib.plugins.query_result': query.Result
     }

@@ -189,7 +189,7 @@ from rdflib.store import Store
 from rdflib import query
 
 from rdflib.syntax.serializer import Serializer
-from rdflib.syntax.parsers import Parser
+from rdflib.syntax.parser import Parser
 from rdflib.syntax.NamespaceManager import NamespaceManager
 
 from rdflib.inputsource import create_input_source
