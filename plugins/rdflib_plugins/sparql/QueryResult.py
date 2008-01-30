@@ -1,10 +1,12 @@
-from rdflib import URIRef,BNode,Literal, Namespace
-from rdflib import query
-from rdflib.graph import Graph
 from xml.dom import XML_NAMESPACE
 from xml.sax.saxutils import XMLGenerator
 from xml.sax.xmlreader import AttributesNSImpl
 from cStringIO import StringIO
+
+from rdflib.term import URIRef, BNode, Literal
+from rdflib.namespace import Namespace
+from rdflib import query
+from rdflib.graph import Graph
 
 SPARQL_XML_NAMESPACE = u'http://www.w3.org/2005/sparql-results#'
 
