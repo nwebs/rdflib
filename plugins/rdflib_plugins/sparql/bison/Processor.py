@@ -1,4 +1,7 @@
 from rdflib import sparql
+print dir(sparql)
+print sparql.__file__
+print sparql.__path__
 import SPARQLParserc as SPARQLParser
 
 def CreateSPARQLParser():

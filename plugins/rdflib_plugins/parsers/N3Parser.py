@@ -1,4 +1,4 @@
-from rdflib.syntax.parsers import Parser
+from rdflib.syntax.parser import Parser
 
 from rdflib.term import URIRef, BNode, Literal, Variable
 from rdflib.namespace import RDF

@@ -10,6 +10,7 @@
 # download page</a>.
 #
 #
+
 """
 TODO: merge this first bit from sparql.sparql.py into rest of doc... updating all along the way.
 
@@ -104,7 +105,7 @@ U{W3C Software License<http://www.w3.org/Consortium/Legal/2002/copyright-softwar
 @version: 2.2
 
 """
-from rdflib import URIRef
+from rdflib.term import URIRef
 
 DESCRIBE=URIRef('http://www.w3.org/TR/rdf-sparql-query/#describe')
 
