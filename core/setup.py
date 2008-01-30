@@ -3,14 +3,12 @@ use_setuptools()
 
 from setuptools import setup, find_packages
 
-from distutils.extension import Extension
-
 # Install rdflib
 from rdflib import __version__, __date__
 
 
 setup(
-    name = 'rdflib',
+    name = 'rdflib_core',
     version = __version__,
     description = "RDFLib is a Python library for working with RDF, a simple yet powerful language for representing information.",
     author = "Daniel 'eikeon' Krech",
@@ -44,18 +42,9 @@ setup(
 
     packages = find_packages(),
 
-    tests_require = ["nose>=0.9.2", "rdflib_plugins"],
+    tests_require = ["nose==0.10.1", "rdflib_plugins"],
 
     test_suite = 'nose.collector',
-
-    entry_points = {        
-        'console_scripts': [
-            'rdfpipe = rdflib_tools.RDFPipe:main',
-        ],
-        'nose.plugins': [
-            'EARLPlugin = rdflib_tools.EARLPlugin:EARLPlugin',
-            ],
-        },
 
     )
 
