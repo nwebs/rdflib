@@ -74,7 +74,7 @@ setup(
             'n3 =     rdflib_plugins.serializers.N3Serializer:N3Serializer',
             ],
         'rdflib.plugins.parser': [
-            'xml =     rdflib_plugins.parsers.RDFXMLParser:RDFXMLParser',
+            'application/rdf+xml =     rdflib_plugins.parsers.RDFXMLParser:RDFXMLParser',
             'trix =     rdflib_plugins.parsers.TriXParser:TriXParser',
             'n3 =     rdflib_plugins.parsers.N3Parser:N3Parser',
             'notation3 =     rdflib_plugins.parsers.N3Parser:N3Parser',

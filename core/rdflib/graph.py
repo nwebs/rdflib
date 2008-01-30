@@ -715,7 +715,7 @@ class Graph(Term):
                 shutil.copy(name, path)
                 os.remove(name)
 
-    def parse(self, source=None, publicID=None, format="xml", 
+    def parse(self, source=None, publicID=None, format="application/rdf+xml", 
               location=None, file=None, data=None, **args):
         """ 
         Parse source adding the resulting triples to the Graph.
@@ -779,7 +779,12 @@ class Graph(Term):
 
         """
 
+        if format=="xml":
+            # warn... backward compat.
+            format = "application/rdf+xml"
+
         source = create_input_source(source=source, publicID=publicID, location=location, file=file, data=data)
+        format = source.content_type or format
         parser = plugin.get(format, Parser)()
         parser.parse(source, self, **args)
         return self
@@ -950,7 +955,7 @@ class ConjunctiveGraph(Graph):
             context_id = "#context"
         return URIRef(context_id, base=uri)
 
-    def parse(self, source, publicID=None, format="xml", 
+    def parse(self, source=None, publicID=None, format="xml", 
               location=None, file=None, data=None, **args):
         """
         Parse source adding the resulting triples to it's own context
@@ -969,7 +974,8 @@ class ConjunctiveGraph(Graph):
         id = self.context_id(self.absolutize(source.getPublicId()))
         context = Graph(store=self.store, identifier=id)
         context.remove((None, None, None))
-        context.parse(source, publicID=publicID, format=format, **args)
+        context.parse(source, publicID=publicID, format=format,
+                      location=location, file=file, data=data, **args)
         return context
 
     def __reduce__(self):
