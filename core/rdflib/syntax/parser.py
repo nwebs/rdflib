@@ -9,7 +9,7 @@ from urllib import pathname2url
 from urllib2 import urlopen, Request
 from urlparse import urljoin
 from StringIO import StringIO
-from xml.sax.xmlreader import InputSource
+from xml.sax import xmlreader
 from xml.sax.saxutils import prepare_input_source
 
 from rdflib import __version__
@@ -25,6 +25,12 @@ class Parser(object):
     def parse(self, source, sink):
         pass
 
+
+class InputSource(xmlreader.InputSource):
+
+    def content_type():
+        return None
+        
 
 class StringInputSource(InputSource, object):
     def __init__(self, value, system_id=None):
