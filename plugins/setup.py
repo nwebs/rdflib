@@ -40,13 +40,6 @@ setup(
 
     install_requires = ['rdflib'],
 
-    ext_modules = [
-        Extension(
-            name='rdflib_plugins.sparql.bison.SPARQLParserc',
-            sources=['src/bison/SPARQLParser.c'],
-            ),
-        ],
-
     tests_require = ["nose>=0.9.2"],
 
     test_suite = 'nose.collector',
@@ -80,12 +73,6 @@ setup(
             'notation3 =     rdflib_plugins.parsers.N3Parser:N3Parser',
             'nt =     rdflib_plugins.parsers.NTParser:NTParser',
             'rdfa =     rdflib_plugins.parsers.RDFaParser:RDFaParser',
-            ],
-        'rdflib.plugins.query_processor': [
-            'sparql = rdflib_plugins.sparql.bison.Processor:Processor',
-            ],
-        'rdflib.plugins.query_result': [
-            'SPARQLQueryResult = rdflib_plugins.sparql.QueryResult:SPARQLQueryResult'
             ],
         },
 

@@ -1,6 +1,5 @@
 from __future__ import generators
-from rdflib import BNode
-from rdflib.literal import Literal
+
 from pprint import pprint
 try:
     from pysqlite2 import dbapi2
@@ -9,10 +8,13 @@ except ImportError:
     warnings.warn("pysqlite2 is not installed")
     __test__=False
 import sha,sys,re,os
+
+from rdflib.term import URIRef, BNode, Literal
 from rdflib.term_utils import *
 from rdflib.graph import QuotedGraph
-from rdflib.store.REGEXMatching import REGEXTerm, NATIVE_REGEX, PYTHON_REGEX
+from rdflib_plugins.store.REGEXMatching import REGEXTerm, NATIVE_REGEX, PYTHON_REGEX
 from rdflib.store.AbstractSQLStore import *
+
 Any = None
 
 #User-defined REGEXP operator

@@ -11,12 +11,10 @@ _literal = re.compile(r'''"(?P<value>[^@&]*)"(?:@(?P<lang>[^&]*))?(?:&<(?P<datat
 from urllib import quote, unquote
 
 from rdflib.store import Store
-from rdflib.literal import Literal
-from rdflib.uriref import URIRef
-from rdflib.bnode import BNode
+from rdflib.term import URIRef, BNode, Literal
 from rdflib.exceptions import ContextTypeError
 
-from rdflib.compat import rsplit
+from string import rsplit
 
 import sqlobject
 from sqlobject import *

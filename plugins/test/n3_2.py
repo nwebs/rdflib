@@ -3,7 +3,7 @@ from pprint import pprint
 
 from rdflib.term import URIRef, BNode, Literal, Variable
 from rdflib.namespace import RDF, RDFS
-from rdflib.stringinputsource import StringInputSource
+
 from rdflib.graph import QuotedGraph,ConjunctiveGraph
 
 implies = URIRef("http://www.w3.org/2000/10/swap/log#implies")
@@ -22,7 +22,7 @@ def testN3Store(store="IOMemory", configString=None):
     if configString:
         g.destroy(configString)
         g.open(configString)
-    g.parse(StringInputSource(testN3), format="n3")
+    g.parse(data=testN3, format="n3")
     print g.store
     try:
         for s,p,o in g.triples((None,implies,None)):

@@ -1,10 +1,3 @@
-
-import rdflib
-from rdflib.graph import Graph
-from rdflib.uriref import URIRef
-from rdflib.node import Node
-from rdflib.bnode import BNode
-from rdflib.literal import Literal
 try:
     import RDF
 except ImportError:
@@ -12,6 +5,10 @@ except ImportError:
     warnings.warn("Redlands not installed")
     __test__=False
 
+
+import rdflib
+from rdflib.graph import Graph
+from rdflib.term import URIRef, BNode, Literal
 from rdflib.store import Store
 
 def _t(i):

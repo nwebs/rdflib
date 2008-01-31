@@ -9,7 +9,7 @@ from rdflib.term import BNode
 from rdflib.term import Literal
 from rdflib.term_utils import *
 from rdflib.graph import QuotedGraph
-from rdflib.store.REGEXMatching import REGEXTerm, PYTHON_REGEX
+from rdflib_plugins.store.REGEXMatching import REGEXTerm, PYTHON_REGEX
 from rdflib.store import Store
 
 Any = None

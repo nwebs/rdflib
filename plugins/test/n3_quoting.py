@@ -2,7 +2,7 @@ import unittest
 
 from rdflib.term import Literal
 from rdflib.namespace import Namespace
-from rdflib.stringinputsource import StringInputSource
+
 from rdflib.graph import Graph
 
 cases = ['no quotes',
@@ -28,7 +28,7 @@ class N3Quoting(unittest.TestCase):
         #print n3txt
 
         g2 = Graph()
-        g2.parse(StringInputSource(n3txt), format="n3")
+        g2.parse(data=n3txt, format="n3")
         for i, case in enumerate(cases):
             l = g2.value(NS['subj'], NS['case%s' % i])
             #print repr(l), repr(case)

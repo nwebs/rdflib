@@ -16,14 +16,14 @@ automatically
 see: http://en.wikipedia.org/wiki/Birthday_Paradox
 """
 
-from rdflib import BNode
-from rdflib import RDF
-from rdflib.Literal import Literal
-from rdflib.uriref import URIRef
+from rdflib.term import URIRef, BNode, Literal
+from rdflib.namespace import RDF
 from rdflib.term_utils import *
 from rdflib.Graph import QuotedGraph
-from rdflib.store.REGEXMatching import REGEXTerm
+from rdflib_plugins.store.REGEXMatching import REGEXTerm
+
 from QuadSlot import POSITION_LIST, normalizeValue
+
 Any = None
 
 COLLISION_DETECTION = False

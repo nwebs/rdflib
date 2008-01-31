@@ -1,6 +1,6 @@
 from rdflib.namespace import Namespace, RDF, RDFS
 from rdflib.term import URIRef, Literal
-from rdflib.stringinputsource import StringInputSource
+
 from rdflib.graph import Graph,ReadOnlyGraphAggregate,ConjunctiveGraph
 
 import sys
@@ -9,11 +9,11 @@ from pprint import pprint
 def testSPARQLNotEquals():
     NS = u"http://example.org/"
     graph = ConjunctiveGraph()
-    graph.parse(StringInputSource("""
+    graph.parse(data = """
        @prefix    : <http://example.org/> .
        @prefix rdf: <%s> .
        :foo rdf:value 1.
-       :bar rdf:value 2."""%RDF.RDFNS), format="n3")
+       :bar rdf:value 2."""%RDF.RDFNS, format="n3")
     rt = graph.query("""SELECT ?node 
                         WHERE {
                                 ?node rdf:value ?val.

@@ -12,15 +12,17 @@ the efficient removal of all statements about a particular resource using cascad
 
 see: http://dev.mysql.com/doc/refman/5.0/en/ansi-diff-foreign-keys.html
 """
-from rdflib.uriref import URIRef
-from rdflib import BNode
-from rdflib import RDF
-from rdflib.Literal import Literal
-from rdflib.uriref import URIRef
+
 from pprint import pprint
+
+from rdflib.term import URIRef, BNode, Literal
+from rdflib.namespace import RDF
+
 from rdflib.term_utils import *
-from rdflib.store.REGEXMatching import REGEXTerm
+from rdflib_plugins.store.REGEXMatching import REGEXTerm
+
 from QuadSlot import *
+
 Any = None
 
 EXPLAIN_INFO = False
@@ -515,7 +517,7 @@ class NamedLiteralProperties(BinaryRelationPartition):
     def extractIdentifiers(self,quadSlots):
         """
         Test literal data type extraction
-        >>> from rdflib import RDF
+        >>> from rdflib.namespace import RDF
         >>> class DummyClass:
         ...   def __init__(self,test=False):
         ...     self.test = test

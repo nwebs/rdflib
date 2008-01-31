@@ -10,7 +10,7 @@ import ntriples
 
 from rdfdiff import Graph
 from rdflib.graph import ConjunctiveGraph as RGraph
-from rdflib.stringinputsource import StringInputSource
+
 from rdflib.term import URIRef
 from rdflib.term import BNode
 from rdflib.term import Literal

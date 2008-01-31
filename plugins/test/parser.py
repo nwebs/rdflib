@@ -3,7 +3,6 @@ import unittest
 from rdflib.graph import Graph
 from rdflib.term import URIRef, BNode, Literal
 from rdflib.namespace import RDF, RDFS
-from rdflib.stringinputsource import StringInputSource
 
 
 class ParserTestCase(unittest.TestCase):
@@ -19,7 +18,7 @@ class ParserTestCase(unittest.TestCase):
 
     def testNoPathWithHash(self):
         g = self.graph
-        g.parse(StringInputSource("""\
+        g.parse(data="""\
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <rdf:RDF
   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -31,7 +30,7 @@ class ParserTestCase(unittest.TestCase):
 </rdfs:Class>
 
 </rdf:RDF>
-"""), publicID="http://example.org")
+""", publicID="http://example.org")
 
         subject = URIRef("http://example.org#")
         label = g.value(subject, RDFS.label)

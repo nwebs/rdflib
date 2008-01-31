@@ -2,7 +2,7 @@ import unittest
 
 from rdflib.term import URIRef 
 from rdflib.graph import Graph
-from rdflib.stringinputsource import StringInputSource
+
 
 class SeqTestCase(unittest.TestCase):
     backend = 'Memory'
@@ -11,7 +11,7 @@ class SeqTestCase(unittest.TestCase):
     def setUp(self):
         store = self.store = Graph(store=self.backend)
         store.open(self.path)
-        store.parse(StringInputSource(s))
+        store.parse(data=s)
 
     def tearDown(self):
         self.store.close()
