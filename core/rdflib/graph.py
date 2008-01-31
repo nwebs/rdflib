@@ -715,7 +715,7 @@ class Graph(Term):
                 shutil.copy(name, path)
                 os.remove(name)
 
-    def parse(self, source=None, publicID=None, format="application/rdf+xml", 
+    def parse(self, source=None, publicID=None, format=None, 
               location=None, file=None, data=None, **args):
         """ 
         Parse source adding the resulting triples to the Graph.
@@ -763,17 +763,17 @@ class Graph(Term):
         >>> f.close()
 
         >>> g = Graph()
-        >>> result = g.parse(data=my_data)
+        >>> result = g.parse(data=my_data, format="application/rdf+xml")
         >>> len(g)
         2
 
         >>> g = Graph()
-        >>> result = g.parse(location=file_name)
+        >>> result = g.parse(location=file_name, format="application/rdf+xml")
         >>> len(g)
         2
 
         >>> g = Graph()
-        >>> result = g.parse(file=file(file_name, "r"))
+        >>> result = g.parse(file=file(file_name, "r"), format="application/rdf+xml")
         >>> len(g)
         2
 
@@ -782,9 +782,11 @@ class Graph(Term):
         if format=="xml":
             # warn... backward compat.
             format = "application/rdf+xml"
-
         source = create_input_source(source=source, publicID=publicID, location=location, file=file, data=data)
-        format = source.content_type or format
+        if format is None:
+            format = source.content_type
+        if format is None:
+            raise Exception("Could not determin format for %r. You can expicitly specify one with the format argument." % source)
         parser = plugin.get(format, Parser)()
         parser.parse(source, self, **args)
         return self

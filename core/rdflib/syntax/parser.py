@@ -49,9 +49,8 @@ class StringInputSource(InputSource, object):
         #   self.setEncoding(encoding)
 
 
-# TODO: add types for n3. text/rdf+n3 ?
 headers = {
-    'Accept': 'application/rdf+xml,application/xhtml+xml;q=0.5',
+    'Accept': 'application/rdf+xml,text/rdf+n3;q=0.9,application/xhtml+xml;q=0.5',
     'User-agent':
     'rdflib-%s (http://rdflib.net/; eikeon@eikeon.com)' % __version__
     }
@@ -75,7 +74,9 @@ class URLInputSource(InputSource, object):
 
 class FileInputSource(InputSource, object):
     def __init__(self, file):
-        super(FileInputSource, self).__init__(`file`)
+        base = urljoin("file:", pathname2url(os.getcwd()))
+        system_id = URIRef(file.name, base=base)
+        super(FileInputSource, self).__init__(system_id)
         self.file = file
         self.setByteStream(file)
         # TODO: self.setEncoding(encoding)
