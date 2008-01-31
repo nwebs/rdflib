@@ -67,12 +67,13 @@ setup(
             'n3 =     rdflib_plugins.serializers.N3Serializer:N3Serializer',
             ],
         'rdflib.plugins.parser': [
+            'xml =     rdflib_plugins.parsers.RDFXMLParser:RDFXMLParser',
             'application/rdf+xml =     rdflib_plugins.parsers.RDFXMLParser:RDFXMLParser',
-            'trix =     rdflib_plugins.parsers.TriXParser:TriXParser',
+            'text/rdf+n3 =     rdflib_plugins.parsers.N3Parser:N3Parser',
             'n3 =     rdflib_plugins.parsers.N3Parser:N3Parser',
-            'notation3 =     rdflib_plugins.parsers.N3Parser:N3Parser',
-            'nt =     rdflib_plugins.parsers.NTParser:NTParser',
+            'nt =     rdflib_plugins.parsers.NTParser:NTParser', # text/plain
             'rdfa =     rdflib_plugins.parsers.RDFaParser:RDFaParser',
+            'trix =     rdflib_plugins.parsers.TriXParser:TriXParser',
             ],
         },
 
