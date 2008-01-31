@@ -15,7 +15,7 @@ from rdflib.store import Store,VALID_STORE, CORRUPTED_STORE, NO_STORE, UNKNOWN
 from rdflib.term_utils import *
 from rdflib.graph import QuotedGraph
 from rdflib_plugins.store.REGEXMatching import REGEXTerm, NATIVE_REGEX, PYTHON_REGEX
-from rdflib.store.AbstractSQLStore import *
+from rdflib_plugins.store.AbstractSQLStore import *
 from FOPLRelationalModel.RelationalHash import IdentifierHash, LiteralHash, RelationalHash, GarbageCollectionQUERY
 from FOPLRelationalModel.BinaryRelationPartition import *
 from FOPLRelationalModel.QuadSlot import *
@@ -1141,7 +1141,10 @@ CREATE TABLE %s_namespace_binds (
 
 
 
-from rdflib import Literal, ConjunctiveGraph, Namespace, BNode, URIRef, Literal, plugin
+from rdflib.term import URIRef, BNode, Literal
+from rdflib.graph import ConjunctiveGraph
+from rdflib.namespace import Namespace
+from rdflib import plugin
 from rdflib.store import Store, VALID_STORE, CORRUPTED_STORE, NO_STORE, UNKNOWN
 from rdflib.graph import Graph, ConjunctiveGraph
 

@@ -40,7 +40,7 @@ setup(
 
     install_requires = ['rdflib'],
 
-    tests_require = ["nose>=0.9.2"],
+    tests_require = ["nose>=0.9.2", "Persistence", "pysqlite"],
 
     test_suite = 'nose.collector',
 

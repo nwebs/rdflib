@@ -19,7 +19,7 @@ see: http://en.wikipedia.org/wiki/Birthday_Paradox
 from rdflib.term import URIRef, BNode, Literal
 from rdflib.namespace import RDF
 from rdflib.term_utils import *
-from rdflib.Graph import QuotedGraph
+from rdflib.graph import QuotedGraph
 from rdflib_plugins.store.REGEXMatching import REGEXTerm
 
 from QuadSlot import POSITION_LIST, normalizeValue

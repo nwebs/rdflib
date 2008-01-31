@@ -13,7 +13,7 @@ from rdflib.term import URIRef, BNode, Literal
 from rdflib.term_utils import *
 from rdflib.graph import QuotedGraph
 from rdflib_plugins.store.REGEXMatching import REGEXTerm, NATIVE_REGEX, PYTHON_REGEX
-from rdflib.store.AbstractSQLStore import *
+from rdflib_plugins.store.AbstractSQLStore import *
 
 Any = None
 

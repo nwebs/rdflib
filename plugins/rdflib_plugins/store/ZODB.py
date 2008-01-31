@@ -12,7 +12,13 @@ try:
     from persistent import Persistent
 except ImportError:
     # < Zope 2.8?
-    from Persistence import Persistent
+    try:
+        from Persistence import Persistent
+    except ImportError:
+        import warnings
+        warnings.warn("Persistence is not installed")
+        __test__=False
+
 
 from BTrees.IOBTree import IOBTree
 from BTrees.OIBTree import OIBTree
