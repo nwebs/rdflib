@@ -58,9 +58,10 @@ specifying a specific value. Support for specifying a specific value
 is primarily for store implementations to be able to create BNodes
 with a specific value (AKA label).
 
+    >>> from rdflib.term import BNode
     >>> b = BNode()
     >>> b.__class__
-    <class 'rdflib.bnode.BNode'>
+    <class 'rdflib.term.BNode'>
 
 """
 
@@ -148,6 +149,7 @@ class BNode(Identifier):
         True
         >>> URIRef("foo")!=BNode("foo")
         True
+
         """
         if isinstance(other, BNode):
             return unicode(self)==unicode(other)
@@ -284,10 +286,13 @@ class Literal(Identifier):
     """
     RDF Literal: http://www.w3.org/TR/rdf-concepts/#section-Graph-Literal
 
+    >>> from rdflib.term import Literal
     >>> Literal(1).toPython()
     1L
     >>> cmp(Literal("adsf"), 1)
     1
+    >>> from rdflib.term import _XSD_NS
+    >>> from datetime import datetime
     >>> lit2006 = Literal('2006-01-01',datatype=_XSD_NS.date)
     >>> lit2006.toPython()
     datetime.date(2006, 1, 1)
@@ -317,6 +322,7 @@ class Literal(Identifier):
     True
     >>> "2005" < lit2006
     True
+
     """
 
     __slots__ = ("language", "datatype", "_cmp_value")
@@ -356,6 +362,7 @@ class Literal(Identifier):
         2L
         >>> Literal("1") + "1"
         rdflib.Literal(u'11', lang=None, datatype=None)
+
         """
 
         py = self.toPython()
@@ -373,8 +380,10 @@ class Literal(Identifier):
         True
         >>> u"\xfe" < Literal(u"foo")
         False
+        >>> import base64
         >>> Literal(base64.encodestring(u"\xfe".encode("utf-8")), datatype=URIRef("http://www.w3.org/2001/XMLSchema#base64Binary")) < u"foo"
         False
+
         """
 
         if other is None:
@@ -460,7 +469,7 @@ class Literal(Identifier):
         ]] -- 6.5.1 Literal Equality (RDF: Concepts and Abstract Syntax)
         
         """
-        return hash(str(self)) ^ hash(self.language) ^ hash(self.datatype) 
+        return hash(u"%s"%self) ^ hash(self.language) ^ hash(self.datatype) 
 
     def __eq__(self, other):
         """        
@@ -475,6 +484,7 @@ class Literal(Identifier):
         False
         >>> Literal('2007-01-01', datatype=_XSD_NS.date) == Literal('2007-01-01', datatype=_XSD_NS.date)
         True
+        >>> from datetime import date
         >>> Literal('2007-01-01', datatype=_XSD_NS.date) == date(2007, 1, 1)
         True
         >>> oneInt     = Literal(1)
@@ -494,6 +504,7 @@ class Literal(Identifier):
         True
         >>> oneInt == 1
         True
+        
         """
         if other is None:
             return False
@@ -535,6 +546,33 @@ class Literal(Identifier):
                 return '%s' % encoded
 
     def __str__(self):
+        """
+        >>> from rdflib.term import Literal
+        >>> a = Literal("This \t is a test")
+
+        The following need not be true in general as str() returns an
+        'informal' string:
+
+            >>> Literal(str(a))==a
+            False
+
+        But the following still needs to be true:
+
+            >>> s = "%s" % a
+            >>> s
+            u'This \t is a test'
+
+        We're using the unicode-escape encoding for the informal
+        string:
+
+            >>> str(a)
+            'This \\t is a test'
+
+            >>> b = Literal(u"\u00a9")
+            >>> str(b)
+            '\\xa9'
+
+        """
         return self.encode("unicode-escape")
 
     def __repr__(self):
