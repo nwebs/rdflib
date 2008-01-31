@@ -46,6 +46,8 @@ class XMLWriter(object):
                 write("\n")
                 write(self.indent)
             write("</%s>" % self.nm.qname(uri))
+        if len(self.element_stack)==0:
+            write("\n")
         self.parent = True
 
     def namespaces(self, namespaces):
