@@ -375,7 +375,7 @@ class Literal(Identifier):
 
     
     def __lt__(self, other):
-        """
+        r"""
         >>> Literal("YXNkZg==", datatype=_XSD_NS[u'base64Binary']) < "foo"
         True
         >>> u"\xfe" < Literal(u"foo")
