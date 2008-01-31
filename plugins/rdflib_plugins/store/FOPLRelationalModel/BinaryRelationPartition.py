@@ -18,7 +18,7 @@ from pprint import pprint
 from rdflib.term import URIRef, BNode, Literal
 from rdflib.namespace import RDF
 
-from rdflib.term_utils import *
+from rdflib_plugins.term_utils import *
 from rdflib_plugins.store.REGEXMatching import REGEXTerm
 
 from QuadSlot import *

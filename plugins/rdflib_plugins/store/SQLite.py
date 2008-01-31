@@ -10,7 +10,7 @@ except ImportError:
 import sha,sys,re,os
 
 from rdflib.term import URIRef, BNode, Literal
-from rdflib.term_utils import *
+from rdflib_plugins.term_utils import *
 from rdflib.graph import QuotedGraph
 from rdflib_plugins.store.REGEXMatching import REGEXTerm, NATIVE_REGEX, PYTHON_REGEX
 from rdflib_plugins.store.AbstractSQLStore import *

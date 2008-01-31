@@ -18,7 +18,7 @@ see: http://en.wikipedia.org/wiki/Birthday_Paradox
 
 from rdflib.term import URIRef, BNode, Literal
 from rdflib.namespace import RDF
-from rdflib.term_utils import *
+from rdflib_plugins.term_utils import *
 from rdflib.graph import QuotedGraph
 from rdflib_plugins.store.REGEXMatching import REGEXTerm
 

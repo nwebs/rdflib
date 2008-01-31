@@ -12,7 +12,7 @@ except ImportError:
 from rdflib.term import BNode, Literal
 from rdflib.store import Store,VALID_STORE, CORRUPTED_STORE, NO_STORE, UNKNOWN
 
-from rdflib.term_utils import *
+from rdflib_plugins.term_utils import *
 from rdflib.graph import QuotedGraph
 from rdflib_plugins.store.REGEXMatching import REGEXTerm, NATIVE_REGEX, PYTHON_REGEX
 from rdflib_plugins.store.AbstractSQLStore import *
