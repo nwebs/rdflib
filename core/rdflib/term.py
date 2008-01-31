@@ -24,10 +24,7 @@ except ImportError:
 
 from urlparse import urlparse, urljoin, urldefrag
 
-#from rdflib.namespace import Namespace
 from rdflib.exceptions import Error
-
-from rdflib.syntax.xml_names import is_ncname
 
 
 _logger = logging.getLogger(__name__)

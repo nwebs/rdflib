@@ -4,7 +4,7 @@ from rdflib.namespace import RDF
 
 from rdflib.term import URIRef, Literal, BNode
 from rdflib.util import first, uniq, more_than
-from rdflib.collection import Collection
+from rdflib.graph import Collection
 
 from rdflib_plugins.serializers.XMLWriter import XMLWriter
 
