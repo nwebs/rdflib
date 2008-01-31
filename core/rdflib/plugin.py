@@ -50,7 +50,9 @@ class PluginException(Error):
 
 class Plugin(object):
 
-    def __init__(self, module_path, class_name):
+    def __init__(self, name, kind, module_path, class_name):
+        self.name = name
+        self.kind = kind
         self.module_path = module_path
         self.class_name = class_name
         self._class = None
@@ -64,7 +66,9 @@ class Plugin(object):
 
 class PKGPlugin(Plugin):
 
-    def __init__(self, ep):
+    def __init__(self, name, kind, ep):
+        self.name = name
+        self.kind = kind
         self.ep = ep
         self._class = None
 
@@ -98,16 +102,16 @@ def get(name, kind):
 # add the plugins specified via pkg_resources' EntryPoints.
 for entry_point, kind in entry_points.iteritems():
     for ep in iter_entry_points(entry_point):
-        _plugins[(ep.name, kind)] = PKGPlugin(ep)
+        _plugins[(ep.name, kind)] = PKGPlugin(ep.name, kind, ep)
 
 
-# TODO: plugins currently don't know there name and kind.
-#
-# def plugins(name=None, kind=None):
-#     """
-#     A generator of the plugins.
-#     """
-#     for p in _plugins.values():
-#         if (name is None or name==p.name) and (kind is None or kind==p.kind):
-#             yield p
+def plugins(name=None, kind=None):
+    """
+    A generator of the plugins. 
+
+    Pass in name and kind to filter... else leave None to match all.
+    """
+    for p in _plugins.values():
+        if (name is None or name==p.name) and (kind is None or kind==p.kind):
+            yield p
 
