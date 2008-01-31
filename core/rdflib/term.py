@@ -546,7 +546,7 @@ class Literal(Identifier):
                 return '%s' % encoded
 
     def __str__(self):
-        """
+        r"""
         >>> from rdflib.term import Literal
         >>> a = Literal("This \t is a test")
 
