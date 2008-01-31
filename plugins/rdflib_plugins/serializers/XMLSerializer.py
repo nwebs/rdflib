@@ -8,7 +8,6 @@ from rdflib.term import URIRef
 from rdflib.term import Literal
 from rdflib.term import BNode
 
-from rdflib.util import uniq
 from rdflib.exceptions import Error
 from rdflib.namespace import split_uri
 
@@ -22,7 +21,7 @@ class XMLSerializer(Serializer):
         store = self.store
         nm = store.namespace_manager
         bindings = {}
-        for predicate in uniq(store.predicates()):
+        for predicate in set(store.predicates()):
             prefix, namespace, name = nm.compute_qname(predicate)
             bindings[prefix] = URIRef(namespace)
         RDFNS = URIRef("http://www.w3.org/1999/02/22-rdf-syntax-ns#")

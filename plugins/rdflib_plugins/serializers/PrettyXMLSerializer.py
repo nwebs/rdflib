@@ -3,13 +3,21 @@ from rdflib.serializer import Serializer
 from rdflib.namespace import RDF
 
 from rdflib.term import URIRef, Literal, BNode
-from rdflib.util import first, uniq, more_than
 from rdflib.graph import Collection
 
 from rdflib_plugins.serializers.XMLWriter import XMLWriter
 
 XMLLANG = "http://www.w3.org/XML/1998/namespacelang"
 
+
+def _more_than(sequence, number):
+    "Returns 1 if sequence has more items than number and 0 if not."
+    i = 0
+    for item in sequence:
+        i += 1
+        if i > number:
+            return 1
+    return 0
 
 # TODO:
 def fix(val):
@@ -37,7 +45,7 @@ class PrettyXMLSerializer(Serializer):
         self.writer = writer = XMLWriter(stream, nm, encoding)
 
         namespaces = {}
-        possible = uniq(store.predicates()) + uniq(store.objects(None, RDF.type))
+        possible = set(store.predicates()).union(set(store.objects(None, RDF.type)))
         for predicate in possible:
             prefix, namespace, local = nm.compute_qname(predicate)
             namespaces[prefix] = namespace
@@ -68,7 +76,7 @@ class PrettyXMLSerializer(Serializer):
         writer = self.writer
         if not subject in self.__serialized:
             self.__serialized[subject] = 1
-            type = first(store.objects(subject, RDF.type))
+            type = store.value(subject=subject, predicate=RDF.type)
             try:
                 self.nm.qname(type)
             except:
@@ -77,7 +85,7 @@ class PrettyXMLSerializer(Serializer):
             writer.push(element)
             if isinstance(subject, BNode):
                 def subj_as_obj_more_than(ceil):
-                    return more_than(store.triples((None, None, subject)), ceil)
+                    return _more_than(store.triples((None, None, subject)), ceil)
                 if (depth == 1 and subj_as_obj_more_than(0)
                         ) or subj_as_obj_more_than(1):
                     writer.attribute(RDF.nodeID, fix(subject))
@@ -107,7 +115,7 @@ class PrettyXMLSerializer(Serializer):
             writer.text(object)
         elif object in self.__serialized or not (object, None, None) in store:
             if isinstance(object, BNode):
-                if more_than(store.triples((None, None, object)), 0):
+                if _more_than(store.triples((None, None, object)), 0):
                     writer.attribute(RDF.nodeID, fix(object))
             else:
                 writer.attribute(RDF.resource, self.relativize(object))
@@ -119,7 +127,7 @@ class PrettyXMLSerializer(Serializer):
                 else:
                     items.append(item)
 
-            if first(store.objects(object, RDF.first)): # may not have type RDF.List
+            if store.value(subject=object, predicate=RDF.first): # may not have type RDF.List
                 collection = object
                 self.__serialized[object] = 1
                 # TODO: warn that any assertions on object other than

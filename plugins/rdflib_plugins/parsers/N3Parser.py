@@ -2,7 +2,6 @@ from rdflib.parser import Parser
 
 from rdflib.term import URIRef, BNode, Literal, Variable
 from rdflib.namespace import RDF
-from rdflib.util import from_n3
 from rdflib.graph import Graph, QuotedGraph, ConjunctiveGraph
 
 from rdflib_plugins.parsers.n3p.n3proc import N3Processor

@@ -8,7 +8,6 @@ from rdflib.namespace import Namespace, RDF, RDFS
 from rdflib.exceptions import ParserError
 
 from rdflib.graph import Graph
-from rdflib.util import first
 
 
 _logger = logging.getLogger("parser_rdfcore")
@@ -44,8 +43,8 @@ def resolve(rel):
 def _testPositive(uri, manifest):
     if verbose: write(u"TESTING: %s" % uri)
     result = 0 # 1=failed, 0=passed
-    inDoc = first(manifest.objects(uri, TEST["inputDocument"]))
-    outDoc = first(manifest.objects(uri, TEST["outputDocument"]))
+    inDoc = manifest.value(subject=uri, predicate=TEST["inputDocument"])
+    outDoc = manifest.value(subject=uri, predicate=TEST["outputDocument"])
     expected = Graph()
     if outDoc[-3:]==".nt":
         format = "nt"
