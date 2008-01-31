@@ -1,5 +1,11 @@
 """
-TODO:
+This module defines the serializer plugin interface.
+
+The module is useful for those wanting to write a serializer that can
+plugin to rdflib. If you are wanting to invoke a serializer you likely
+want to do so through the Graph class serialize method.
+
+TODO: info for how to write a serializer that can plugin to rdflib.
 
 """
 

@@ -1,5 +1,5 @@
 """
-terms...
+This module defines the different types of terms...
 
 """
 

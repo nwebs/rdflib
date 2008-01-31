@@ -1,5 +1,8 @@
 """
-A Graph and ConjunctiveGraph interface for working with an RDF Graph.
+This module defines a number of view onto RDF Graphs and N3 Graph. 
+
+The primary interfaces this module exposes for working with graph are
+Graph and ConjunctiveGraph cass.
 
     >>> from rdflib.graph import Graph, ConjunctiveGraph
     >>> from rdflib.graph import ReadOnlyGraphAggregate

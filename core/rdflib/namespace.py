@@ -1,3 +1,11 @@
+"""
+This module defines namespace related classes and functions and a few
+standard namespace instances.
+
+
+
+"""
+
 from rdflib.term import URIRef
 
 import logging
@@ -194,6 +202,4 @@ def split_uri(uri):
                     return (ns, ln)
             break
     raise Exception("Can't split '%s'" % uri)
-
-
 

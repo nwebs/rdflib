@@ -1,5 +1,10 @@
 """
+This module defines the parser plugin interface and contains other
+related parser support code.
 
+The module is mainly useful for those wanting to write a parser that
+can plugin to rdflib. If you are wanting to invoke a parser you likely
+want to do so through the Graph class parse method.
 
 """
 

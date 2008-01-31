@@ -1,4 +1,9 @@
 """
+This module defines the query plugin interface.
+
+The module is useful for those wanting to write a query processor that
+can plugin to rdflib. If you are wanting to execute a query you likely
+want to do so through the Graph class query method.
 
 """
 

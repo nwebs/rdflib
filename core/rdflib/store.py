@@ -1,3 +1,12 @@
+"""
+This module defines the store plugin interface.
+
+The module is useful for those wanting to write a store plugin for
+rdflib. Otherwise see the rdflib.graph documentation on how to specify
+which store your graph is to use.
+
+"""
+
 ## Context-aware: An RDF store capable of storing statements within contexts is considered context-aware.
 ## Essentially, such a store is able to partition the RDF model it represents into individual, named, and addressable sub-graphs.
 
