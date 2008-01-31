@@ -10,10 +10,10 @@ If you have a package that uses a setuptools based setup.py you can add the foll
 
     entry_points = {        
         'rdflib.plugins.parser': [
-            'nt =     rdflib.syntax.parsers.NTParser:NTParser',
+            'nt =     rdflib_plugins.parsers.NTParser:NTParser',
             ],
         'rdflib.plugins.serializer': [
-            'nt =     rdflib.syntax.serializers.NTSerializer:NTSerializer',
+            'nt =     rdflib_plugins.serializers.NTSerializer:NTSerializer',
             ],
         }
 
@@ -28,15 +28,15 @@ import warnings
 from pkg_resources import iter_entry_points
 
 from rdflib.store import Store
-from rdflib.syntax import serializer
-from rdflib.syntax import parser
+from rdflib.serializer import Serializer
+from rdflib.parser import Parser
 from rdflib import query
 from rdflib.exceptions import Error
 
 entry_points = {
     'rdflib.plugins.store': Store,
-    'rdflib.plugins.serializer': serializer.Serializer,
-    'rdflib.plugins.parser': parser.Parser,
+    'rdflib.plugins.serializer': Serializer,
+    'rdflib.plugins.parser': Parser,
     'rdflib.plugins.query_processor': query.Processor,
     'rdflib.plugins.query_result': query.Result
     }

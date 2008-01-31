@@ -5,7 +5,7 @@ from rdflib.graph import Graph
 from rdflib.term import URIRef, BNode, Literal
 
 from rdflib.namespace import Namespace, RDF
-from rdflib.syntax.serializer import Serializer
+from rdflib.serializer import Serializer
 from rdflib import plugin
 
 class GraphTestCase(unittest.TestCase):

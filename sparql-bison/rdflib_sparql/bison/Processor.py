@@ -1,4 +1,5 @@
-from rdflib import sparql
+import rdflib_sparql as sparql
+
 import SPARQLParserc as SPARQLParser
 
 def CreateSPARQLParser():

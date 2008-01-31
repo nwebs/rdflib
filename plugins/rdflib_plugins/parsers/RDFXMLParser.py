@@ -2,7 +2,7 @@ from xml.sax import make_parser
 from xml.sax.saxutils import handler
 from xml.sax.handler import ErrorHandler
 
-from rdflib.syntax.parser import Parser
+from rdflib.parser import Parser
 
 from rdflib_plugins.parsers.RDFXMLHandler import RDFXMLHandler
 

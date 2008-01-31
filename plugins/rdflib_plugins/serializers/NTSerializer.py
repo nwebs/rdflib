@@ -1,7 +1,7 @@
 """
 """
 
-from rdflib.syntax.serializer import Serializer
+from rdflib.serializer import Serializer
 
 
 class NTSerializer(Serializer):

@@ -2,7 +2,7 @@ from rdflib.term import BNode
 from rdflib.term import Literal
 from rdflib.term import URIRef
 
-from rdflib.syntax.serializer import Serializer
+from rdflib.serializer import Serializer
 
 from rdflib.namespace import RDF, RDFS
 

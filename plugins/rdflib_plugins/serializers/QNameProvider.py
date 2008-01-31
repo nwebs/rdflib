@@ -1,5 +1,5 @@
 
-from rdflib.syntax.xml_names import split_uri
+from rdflib.namespace import split_uri
 
 XMLLANG = u"http://www.w3.org/XML/1998/namespace#lang"
 

@@ -1,4 +1,4 @@
-from rdflib.syntax.serializer import Serializer
+from rdflib.serializer import Serializer
 
 from rdflib.namespace import RDF
 
