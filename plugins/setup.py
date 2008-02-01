@@ -46,8 +46,6 @@ setup(
 
     entry_points = {        
         'rdflib.plugins.store': [
-            'IOMemory = rdflib_plugins.store.IOMemory:IOMemory',
-            'Memory = rdflib_plugins.store.Memory:Memory',
             'Sleepycat = rdflib_plugins.store.Sleepycat:Sleepycat',
             'BerkeleyDB = rdflib_plugins.store.BerkeleyDB:BerkeleyDB', 
             'BDBOptimized = rdflib_plugins.store.BDBOptimized:BDBOptimized',
@@ -58,17 +56,12 @@ setup(
             'Redland = rdflib_plugins.store.Redland:Redland',
             ],
         'rdflib.plugins.serializer': [
-            'rdf =     rdflib_plugins.serializers.XMLSerializer:XMLSerializer',
-            'xml =     rdflib_plugins.serializers.XMLSerializer:XMLSerializer',
-            'rdf/xml =     rdflib_plugins.serializers.XMLSerializer:XMLSerializer',
             'pretty-xml =     rdflib_plugins.serializers.PrettyXMLSerializer:PrettyXMLSerializer',
             'nt =     rdflib_plugins.serializers.NTSerializer:NTSerializer',
             'turtle =     rdflib_plugins.serializers.TurtleSerializer:TurtleSerializer',
             'n3 =     rdflib_plugins.serializers.N3Serializer:N3Serializer',
             ],
         'rdflib.plugins.parser': [
-            'xml =     rdflib_plugins.parsers.RDFXMLParser:RDFXMLParser',
-            'application/rdf+xml =     rdflib_plugins.parsers.RDFXMLParser:RDFXMLParser',
             'text/rdf+n3 =     rdflib_plugins.parsers.N3Parser:N3Parser',
             'n3 =     rdflib_plugins.parsers.N3Parser:N3Parser',
             'nt =     rdflib_plugins.parsers.NTParser:NTParser', # text/plain
