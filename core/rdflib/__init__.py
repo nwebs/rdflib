@@ -22,6 +22,6 @@ A tiny example:
 
 """
 
-__version__ = "2.5.0"
+__version__ = "3.0"
 __date__ = "not/yet/released"
 

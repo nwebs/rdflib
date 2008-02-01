@@ -8,7 +8,7 @@ from distutils.extension import Extension
 # Install rdflib
 
 #from rdflib import __version__, __date__
-__version__ = "3.0.0"
+__version__ = "3.0"
 __date__ = "not/yet/released"
 
 

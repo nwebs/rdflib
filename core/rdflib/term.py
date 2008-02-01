@@ -24,8 +24,6 @@ except ImportError:
 
 from urlparse import urlparse, urljoin, urldefrag
 
-from rdflib.exceptions import Error
-
 
 _logger = logging.getLogger(__name__)
 

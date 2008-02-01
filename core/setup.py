@@ -5,10 +5,10 @@ from setuptools import setup, find_packages
 
 # Install rdflib
 from rdflib import __version__, __date__
-
+__version__ = "3.0a1"
 
 setup(
-    name = 'rdflib_core',
+    name = 'rdflib-core',
     version = __version__,
     description = "RDFLib is a Python library for working with RDF, a simple yet powerful language for representing information.",
     author = "Daniel 'eikeon' Krech",
@@ -35,10 +35,9 @@ setup(
     
     If you have recently reported a bug marked as fixed, or have a craving for
     the very latest, you may want the development version instead:
-    http://rdflib.googlecode.com/svn/trunk/#egg=rdflib-dev
+    http://rdflib.googlecode.com/svn/trunk/#egg=rdflib-core-dev
 
     """,
-    download_url = "http://rdflib.net/rdflib-%s.tar.gz" % __version__,
 
     packages = find_packages(),
 
