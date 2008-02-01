@@ -8,7 +8,7 @@ from rdflib import __version__, __date__
 __version__ = "3.0a1"
 
 setup(
-    name = 'rdflib-core',
+    name = 'rdflib',
     version = __version__,
     description = "RDFLib is a Python library for working with RDF, a simple yet powerful language for representing information.",
     author = "Daniel 'eikeon' Krech",
@@ -41,9 +41,23 @@ setup(
 
     packages = find_packages(),
 
-    tests_require = ["nose==0.10.1", "rdflib_plugins"],
+    tests_require = ["nose==0.10.1"],
 
     test_suite = 'nose.collector',
+
+    entry_points = {        
+        'rdflib.plugins.store': [
+            'IOMemory = rdflib.plugins.store.IOMemory:IOMemory',
+            'Memory = rdflib.plugins.store.Memory:Memory',
+            ],
+        'rdflib.plugins.serializer': [
+            'rdf/xml =     rdflib.plugins.serializers.XMLSerializer:XMLSerializer',
+            ],
+        'rdflib.plugins.parser': [
+            'xml =     rdflib.plugins.parsers.RDFXMLParser:RDFXMLParser',
+            'application/rdf+xml =     rdflib.plugins.parsers.RDFXMLParser:RDFXMLParser',
+            ],
+        },
 
     )
 
