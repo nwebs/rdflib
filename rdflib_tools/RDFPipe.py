@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 from pprint import pprint
-from rdflib.namespace import Namespace
+from rdflib.Namespace import Namespace
 from rdflib import plugin,RDF,RDFS,URIRef
 from rdflib.store import Store
-from rdflib.graph import Graph
+from rdflib.Graph import Graph
 from rdflib.syntax.NamespaceManager import NamespaceManager
 
 RDFLIB_CONNECTION=''

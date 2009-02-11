@@ -6,10 +6,7 @@ from setuptools import setup, find_packages
 from distutils.extension import Extension
 
 # Install rdflib
-
-#from rdflib import __version__, __date__
-__version__ = "3.0"
-__date__ = "not/yet/released"
+from rdflib import __version__, __date__
 
 
 setup(
@@ -40,14 +37,18 @@ setup(
     
     If you have recently reported a bug marked as fixed, or have a craving for
     the very latest, you may want the development version instead:
-    http://rdflib.googlecode.com/svn/trunk/#egg=rdflib-dev
-
+    http://svn.rdflib.net/trunk#egg=rdflib-dev
     """,
     download_url = "http://rdflib.net/rdflib-%s.tar.gz" % __version__,
 
     packages = find_packages(),
 
-    install_requires = ["rdflib_core", "rdflib_plugins"],
+    ext_modules = [
+        Extension(
+            name='rdflib.sparql.bison.SPARQLParserc',
+            sources=['src/bison/SPARQLParser.c'],
+            ),
+        ],
 
     tests_require = ["nose>=0.9.2"],
 

@@ -1,4 +1,0 @@
-include CHANGELOG
-include LICENSE
-include run_tests.py
-graft test
