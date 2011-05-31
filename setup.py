@@ -37,7 +37,7 @@ setup(
     http://rdflib.googlecode.com/svn/trunk#egg=rdflib-dev
     """,
     download_url = "http://rdflib.net/rdflib-%s.tar.gz" % __version__,
-
+    requires=['isodate'],  
     packages = ['rdflib',
                 'rdflib/plugins',
                 'rdflib/plugins',
